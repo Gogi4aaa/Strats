@@ -1,6 +1,16 @@
+@import './scss/shared.scss';
+
 #root {
   max-width: 1280px;
+  height: 100vh;
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+
+  @include noScroll;
+  @extend %fullSpace;
+}
+
+#main {
+  height: calc(100vh - 2rem);
+  
+  @extend %noWhiteSpace;
 }

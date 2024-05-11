@@ -1,0 +1,10 @@
+@import './base.scss';
+
+h2 {
+    @include fonts(
+        map-get($font-family, Roboto),
+        map-get($font-size, lg),
+        600,
+        map-get($color, primary)
+    );
+}

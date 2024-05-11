@@ -1,11 +1,11 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 
-import './App.css'
+import './App.scss'
 
 class App extends Component {
   render() {
     return (
-      <div id="root">
+      <div id="main">
         <h2>Welcome to Strats!</h2>
       </div>
     )
