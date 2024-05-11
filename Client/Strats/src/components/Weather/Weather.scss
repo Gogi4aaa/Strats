@@ -1,5 +1,9 @@
 @import '../../scss/base.scss';
 
+.weather-results {
+    font-family: map-get($font-family, noto);
+}
+
 .icon {
     &-gray {
         color: map-get($color, light);
