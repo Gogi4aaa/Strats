@@ -214,7 +214,7 @@ export default function Weather() {
                     <Button type="button" onClick={getLocation}>Get Local Weather</Button>
                 </div>
             }
-            {status !== null && <div>Status: {status}</div>}
+            {status !== null && <p>Status: {status}</p>}
             {result !== null &&
                 <div className="weather-results">
                     {result}

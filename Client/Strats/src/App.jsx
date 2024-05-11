@@ -10,6 +10,7 @@ class App extends Component {
     return (
       <DefaultPage id="main" icon={undefined} title="Welcome to Strats!">
         <Weather />
+        <p>Styling is fun!</p>
       </DefaultPage>
     )
   }
