@@ -1,15 +1,21 @@
+// weather api documentation at https://open-meteo.com/en/docs
+
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import './Weather.scss';
 
 export default function Weather() {
+    /* API vars */
     const url = 'https://api.open-meteo.com/v1/forecast';
     const currWeather = 'current_weather=true';
     const hourly = 'hourly=temperature_2m,weathercode';
+
+    // can add a useState check to see if user wants imperial or metric units
     const tempUnit = 'temperature_unit=fahrenheit';
     const windUnit = 'windspeed_unit=mph';
     const precipUnit = 'precipitation_unit=inch';
+    /* end API Vars */
 
     const myIcons = {
         hotCoffee: 'fa-solid fa-mug-hot',
@@ -24,16 +30,20 @@ export default function Weather() {
         snowflake: 'fa-solid fa-snowflake'
     };
 
+    /* get lat/lng from browser detect */ 
     const [lat, setLat] = useState(null);
     const [lng, setLng] = useState(null);
     const [status, setStatus] = useState(null);
 
+    // get api url
     const APIURL = `${url}?latitude=${lat}&longitude=${lng}&${currWeather}&${hourly}&${tempUnit}&${windUnit}&${precipUnit}`;
+    /* end get lat/lng from browser detect */
 
+    // data objects
     const [data, setData] = useState(null);
-    // const [obj, setObj] = useState({text: 'Loading...', icon: 'hotCoffee', className: 'icon-slightGrey'});
     const [obj, setObj] = useState(null);
 
+    /* call to browser to detect lat/lng */
     const getLocation = () => {
         if (!navigator.geolocation) {
             setStatus('Geolocation is not supported by your browser');
@@ -48,7 +58,9 @@ export default function Weather() {
             });
         }
     }
+    /* end call to browser to detect lat/lng */
 
+    /* Pretty functions */
     function getTimeOfDay() {
         const today = new Date();
         const hour = today.getHours();
@@ -60,20 +72,6 @@ export default function Weather() {
     }
 
     const [isDaytime, setIsDaytime] = useState(true);
-
-    function getForecast() {
-        axios({
-            method: "GET",
-            url: APIURL
-        })
-        .then((response) => {
-            setData(response.data);
-            getWeatherInterpretation(response.data.current_weather.weathercode);
-        })
-        .catch((error) => {
-            setData(error);
-        });
-    };
 
     function tempColor(temp) {
         if (temp >= 72) return 'red';
@@ -141,6 +139,23 @@ export default function Weather() {
         if (temp >= 50 && temp <= 64) return 'yellow';
         if (temp < 49) return 'darkblue';
     }
+    /* end Pretty functions */
+
+    /* call the API */
+    function getForecast() {
+        axios({
+            method: "GET",
+            url: APIURL
+        })
+        .then((response) => {
+            setData(response.data);
+            getWeatherInterpretation(response.data.current_weather.weathercode);
+        })
+        .catch((error) => {
+            setData(error);
+        });
+    };
+    /* end call the API */
 
     const [haveCoords, setHaveCoords] = useState(false);
 
@@ -163,17 +178,23 @@ export default function Weather() {
 
     useEffect(() => {
         if (data !== null) {
-            console.log(data);
-            // setResult(<div>{data}</div>)
+            // console.log(data);
             setResult(
                 <>
+                    <div style={{ color: tempColor(data.current_weather.temperature) }}>
+                        <div>
+                            Temp: {data.current_weather.temperature}{data.current_weather_units.temperature}
+                        </div>
+                        <div>
+                            Wind: {data.current_weather.windspeed}{data.current_weather_units.windspeed}
+                            &nbsp;
+                            {getDirection(data.current_weather.winddirection)}
+                        </div>
+                    </div>
                     <div className={obj.className}>
                         <i className={`${obj.className} ${myIcons[obj.icon]}`}></i>
                         &nbsp;
                         {obj.text}
-                    </div>
-                    <div style={{ color: tempColor(data.current_weather.temperature) }}>
-                        {data.current_weather.temperature}{data.hourly_units.temperature_2m}
                     </div>
                 </>
             );
