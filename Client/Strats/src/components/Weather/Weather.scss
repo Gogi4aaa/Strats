@@ -1,0 +1,23 @@
+@import '../../scss/base.scss';
+
+.icon {
+    &-gray {
+        color: map-get($color, light);
+
+        &-light {
+            color: map-get($color, lighter);
+        }
+    }
+
+    &-cool {
+        color: map-get($color, blue);
+    }
+
+    &-warm {
+        color: map-get($color, yellow);
+    }
+
+    &-hot {
+        color: map-get($color, red);
+    }
+}
