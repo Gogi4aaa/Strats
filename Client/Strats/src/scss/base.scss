@@ -14,9 +14,9 @@ $font-size: (
 );
 
 $color: (
-    primary: #96880a,
-    secondary: #f8c314,
-    tertiary: #f7f7b8,
+    primary: #5caf31,
+    secondary: #21351a,
+    tertiary: #ccffcc,
     red: #990000,
     yellow: yellow,
     blue: steelblue,
@@ -27,7 +27,7 @@ $color: (
     lighter: #999999
 );
 
-$border-radius: 2rem;
+$border-radius: .25rem;
 $background-image: './assets/OIP.jpg';
 
 @mixin noScroll {
@@ -44,13 +44,13 @@ $background-image: './assets/OIP.jpg';
 }
 
 @mixin borderTopRadius {
-    border-top-left-radius: $borderRadius;
-    border-top-right-radius: $borderRadius;
+    border-top-left-radius: $border-radius;
+    border-top-right-radius: $border-radius;
 }
 
 @mixin borderBottomRadius {
-    border-bottom-left-radius: $borderRadius;
-    border-bottom-right-radius: $borderRadius;
+    border-bottom-left-radius: $border-radius;
+    border-bottom-right-radius: $border-radius;
 }
 
 @mixin colors($bgColor, $color) {

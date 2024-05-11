@@ -1,0 +1,30 @@
+@import '../../../scss/base.scss';
+
+button {
+    border: solid 1px map-get($color, primary);
+    text-transform: uppercase;
+    padding: .25rem 1rem;
+    min-width: 12rem;
+
+    @include fonts(
+        map-get($font-family, titillium),
+        map-get($font-size, rg),
+        bold,
+        undefined
+    );
+    @include colors(
+        map-get($color, dark),
+        map-get($color, primary)
+    );
+    @include borderTopRadius;
+    @include borderBottomRadius;
+
+    &:hover {
+        border: solid 1px map-get($color, tertiary);
+
+        @include colors(
+            map-get($color, primary),
+            map-get($color, darker)
+        );
+    }
+}

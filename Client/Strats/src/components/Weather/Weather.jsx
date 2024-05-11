@@ -3,6 +3,8 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
+import Button from '../ui/Button/Button';
+
 import './Weather.scss';
 
 export default function Weather() {
@@ -169,7 +171,11 @@ export default function Weather() {
 
     useEffect(() => {
         if (haveCoords) {
-            getTimeOfDay()
+            setInterval(() => {
+                getTimeOfDay();
+                getForecast();
+            }, 5000);
+            getTimeOfDay();
             getForecast();
         }
     }, [haveCoords]);
@@ -205,7 +211,7 @@ export default function Weather() {
         <>
             {haveCoords === false &&
                 <div>
-                    <button onClick={getLocation}>Get Local Weather</button>
+                    <Button type="button" onClick={getLocation}>Get Local Weather</Button>
                 </div>
             }
             {status !== null && <div>Status: {status}</div>}

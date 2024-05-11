@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+
+import DefaultPage from './components/DefaultPage/DefaultPage';
 import Weather from './components/Weather/Weather';
 
 import './App.scss'
@@ -6,10 +8,9 @@ import './App.scss'
 class App extends Component {
   render() {
     return (
-      <div id="main">
-        <h2>Welcome to Strats!</h2>
+      <DefaultPage id="main" icon={undefined} title="Welcome to Strats!">
         <Weather />
-      </div>
+      </DefaultPage>
     )
   }
 }

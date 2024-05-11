@@ -1,0 +1,41 @@
+@import '../../scss/base.scss';
+
+.defaultPage {
+    border: 1px solid map-get($color, primary);
+    height: calc(100vh - 7rem);
+
+    @include colors(
+        rgba(map-get($color, darker), .6), 
+        map-get($color, tertiary)
+    );    
+    @include borderTopRadius;
+    @include borderBottomRadius;
+    @include noScroll;
+    // @include noSelect;
+
+    &-header {
+        position: sticky;
+        top: 0;
+        padding: 0 1rem;
+    
+        @include borderTopRadius;
+        @include colors(
+            map-get($color, primary), 
+            map-get($color, secondary)
+        );
+        @include fonts(
+            map-get($font-family, titillium), 
+            map-get($font-size, lg), 
+            600, 
+            map-get($color, darker)
+        );
+    }
+
+    &-children {
+        margin: 1rem;
+    }
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
