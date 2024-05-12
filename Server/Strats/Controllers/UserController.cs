@@ -1,31 +1,25 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-
-namespace Strats.Controllers
+﻿namespace Strats.Controllers
 {
+	using Microsoft.AspNetCore.Mvc;
 	using Data;
 	using Data.Models.Request;
+	using Services.Data.Interfaces;
 
 	[Route("api/[controller]")]
 	[ApiController]
 	public class UserController : ControllerBase
 	{
-		private readonly StratsDbContext dbContext;
-		public UserController(StratsDbContext dbContext)
+		private readonly IUserService userService;
+		public UserController(IUserService userService)
 		{
-			this.dbContext = dbContext;
+			this.userService = userService;
 		}
 
 		[HttpPost]
-		[ProducesResponseType(200)]
-		public IActionResult Register(UserRegisterRequest request)
+		public async Task<IActionResult> Register(UserRegisterRequest request)
 		{
-			if (!ModelState.IsValid)
-			{
-				return BadRequest(ModelState);
-			}
-
-			return Ok();
+			var result = await this.userService.Register(request);
+			return Ok(result);
 		}
 	}
 }

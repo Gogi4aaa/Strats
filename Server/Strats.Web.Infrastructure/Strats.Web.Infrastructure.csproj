@@ -7,9 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Strats.Common\Strats.Common.csproj" />
-    <ProjectReference Include="..\Strats.Data.Models\Strats.Data.Models.csproj" />
-    <ProjectReference Include="..\Strats.Data\Strats.Data.csproj" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
   </ItemGroup>
 
 </Project>

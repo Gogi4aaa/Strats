@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Strats.Data;
+using Strats.Services.Data.Interfaces;
+using Strats.Web.Infrastructure.Extensions;
 
 var myCors = "_myAllowSpecificOrigins";
 var builder = WebApplication.CreateBuilder(args);
@@ -23,6 +25,8 @@ builder.Services.AddCors(options =>
 				.AllowAnyHeader();
 		});
 });
+builder.Services.AddApplicationServices(typeof(IUserService));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

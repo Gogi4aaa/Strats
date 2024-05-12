@@ -24,6 +24,8 @@
   <ItemGroup>
     <ProjectReference Include="..\Strats.Data.Models\Strats.Data.Models.csproj" />
     <ProjectReference Include="..\Strats.Data\Strats.Data.csproj" />
+    <ProjectReference Include="..\Strats.Services.Data\Strats.Services.Data.csproj" />
+    <ProjectReference Include="..\Strats.Web.Infrastructure\Strats.Web.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
