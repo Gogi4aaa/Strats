@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Strats.Data.Models\Strats.Data.Models.csproj" />
+  </ItemGroup>
+
 </Project>
