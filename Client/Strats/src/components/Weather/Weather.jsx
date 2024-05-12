@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import Button from '../ui/Button/Button';
-import { convertTimeStampToUnixTime, formatDateTime } from '../../helpers.js';
+import { convertTimeStampToUnixTime, formatDateTime, convertToCelsius } from '../../helpers.js';
 
 import './Weather.scss';
 
@@ -157,7 +157,7 @@ export default function Weather() {
     function tempColor(temp) {
         if (temp >= 72) return 'red';
         if (temp >= 64 && temp < 72) return 'orangered';
-        if (temp >= 50 && temp < 64) return 'yellow';
+        if (temp >= 50 && temp < 64) return 'black';
         if (temp >= 40 && temp < 50) return 'steelblue';
         if (temp < 40) return 'blue';
     }
@@ -170,7 +170,9 @@ export default function Weather() {
             url: APIURL
         })
         .then((response) => {
-            setData(response.data);
+            setData(prevData => {
+                return response.data
+            });
             getWeatherInterpretation(response.data.current_weather.weathercode);
         })
         .catch((error) => {
@@ -193,7 +195,7 @@ export default function Weather() {
 
     useEffect(() => {
         if (data !== null) {
-            // console.log(data);
+                console.log(data);
             getTimeOfDay();
             setResult(
                 <>
@@ -212,7 +214,7 @@ export default function Weather() {
                             {getDirection(data.current_weather.winddirection)}
                         </div>
                         <div style={{ color: tempColor(data.current_weather.temperature) }}>
-                            Temp: {data.current_weather.temperature}{data.current_weather_units.temperature}
+                            {convertToCelsius(data.current_weather.temperature)}°C
                         </div>
                     </div>
                     <div style={{ color: tempColor(data.current_weather.temperature) }}>
@@ -239,7 +241,7 @@ export default function Weather() {
             }
             {status !== null && <p>Status: {status}</p>}
             {result !== null &&
-                <div className="weather-results">
+                <div className="main-box weather-results">
                     {result}
                 </div>
             }

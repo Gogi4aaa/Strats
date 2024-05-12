@@ -23,8 +23,13 @@ function formatDateTime(dt) {
         datetime.getFullYear() + ' ' +
         strTime;
 }
+function convertToCelsius(temperature) {
+    var celsius = (temperature - 32) * 5/9;
+    return celsius.toFixed(2);
+}
 
 export {
     convertTimeStampToUnixTime,
-    formatDateTime
+    formatDateTime,
+    convertToCelsius
 }
