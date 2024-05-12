@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.27" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Strats.Common\Strats.Common.csproj" />
     <ProjectReference Include="..\Strats.Data.Models\Strats.Data.Models.csproj" />
     <ProjectReference Include="..\Strats.Data\Strats.Data.csproj" />

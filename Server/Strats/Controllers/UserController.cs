@@ -4,9 +4,10 @@
 	using Data;
 	using Data.Models.ApiResponse;
 	using Data.Models.Request;
+	using Data.Models.Response;
 	using Services.Data.Interfaces;
 
-	[Route("api/[controller]")]
+	[Route("[controller]/[action]")]
 	[ApiController]
 	public class UserController : ControllerBase
 	{
@@ -34,6 +35,26 @@
 			}
 
 			return Ok(result);
+		}
+
+		[HttpPost]
+		public async Task<ActionResult<UserLoginResponse>> Login(UserLoginRequest request)
+		{
+			ApiResponseData<UserLoginResponse> result;
+			try
+			{
+				result = await this.userService.Login(request);
+				if (result.Error != null || !result.IsValid)
+				{
+					return BadRequest(result.Error.Message);
+				}
+			}
+			catch (Exception e)
+			{
+				return BadRequest(e.Message);
+			}
+
+			return Ok(result.Data);
 		}
 	}
 }
