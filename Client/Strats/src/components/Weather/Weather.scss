@@ -5,23 +5,11 @@
 }
 
 .icon {
-    &-gray {
-        color: map-get($color, light);
-
-        &-light {
-            color: map-get($color, lighter);
-        }
-    }
-
-    &-cool {
+    &-night {
         color: map-get($color, blue);
     }
 
-    &-warm {
+    &-day {
         color: map-get($color, yellow);
-    }
-
-    &-hot {
-        color: map-get($color, red);
     }
 }
