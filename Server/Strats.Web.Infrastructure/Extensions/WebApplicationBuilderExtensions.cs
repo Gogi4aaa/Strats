@@ -1,8 +1,13 @@
 ﻿namespace Strats.Web.Infrastructure.Extensions
 {
+	using Microsoft.AspNetCore.Builder;
 	using Microsoft.Extensions.DependencyInjection;
 	using System.Reflection;
-
+	using System.Runtime.CompilerServices;
+	using Data;
+	using Data.Models.Database;
+	using Microsoft.EntityFrameworkCore;
+	using static Common.GeneralConstants.UserRoles;
 	public static class WebApplicationBuilderExtensions
 	{
 		/// <summary>
@@ -35,6 +40,37 @@
 
 				services.AddScoped(interfaceType, implementationType);
 			}
+		}
+		//Seed User Role
+		public static IApplicationBuilder SeedUser(this IApplicationBuilder app)
+		{
+			using IServiceScope scopedServices = app.ApplicationServices.CreateScope();
+
+			IServiceProvider serviceProvider = scopedServices.ServiceProvider;
+
+			StratsDbContext dbContext = serviceProvider.GetService<StratsDbContext>()!;
+
+			Task.Run(async () =>
+				{
+					if (await dbContext.Roles.AnyAsync(x => x.Name == UserRoleName))
+					{
+						return;
+					}
+
+					Role role = new Role()
+						{
+							Id = Guid.NewGuid(),
+							Name = "User",
+						};
+
+					await dbContext.Roles.AddAsync(role);
+					await dbContext.SaveChangesAsync();
+
+				})
+				.GetAwaiter()
+				.GetResult();
+
+			return app;
 		}
 	}
 }

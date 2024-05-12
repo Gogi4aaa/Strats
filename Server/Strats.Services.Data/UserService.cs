@@ -46,7 +46,7 @@
 				Username = request.Username,
 				Email = request.Email,
 				Password = this.cryptographyService.ComputeSha256Hash(request.Password),
-				RoleId = Guid.NewGuid()//TODO: "seededRoleId(UserRole)"
+				RoleId = Guid.Parse("171340b6-5597-47aa-86c3-5aa9f2a779a5")
 			};
 
 			await this.dbContext.Users.AddAsync(userToAdd);
