@@ -4,8 +4,8 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import Button from '../ui/Button/Button';
+import { convertTimeStampToUnixTime, formatDateTime } from '../../helpers.js';
 
-import { convertTimeStampToUnixTime, formatDateTime } from '../../helpers';
 import './Weather.scss';
 
 export default function Weather() {
@@ -177,27 +177,18 @@ export default function Weather() {
             setData(error);
         });
     };
-    /* end call the API */
-
-    const [haveCoords, setHaveCoords] = useState(false);
 
     useEffect(() => {
         if (lat !== null && lng !== null) {
-            setHaveCoords(true);
-        } else {
-            setHaveCoords(false);
-        }
-    }, [lat, lng]);
-
-    useEffect(() => {
-        if (haveCoords) {
             setInterval(() => {
                 getForecast();
             }, 30000 /* 5 minutes * 60 seconds * 1000 milliseconds */);
-            getForecast();
+            getForecast(); // Call 1 time, at start
         }
-    }, [haveCoords]);
+    }, [lat, lng]);
+    /* end call the API */
 
+    /* set html to display from results */
     const [result, setResult] = useState(null);
 
     useEffect(() => {
@@ -233,6 +224,7 @@ export default function Weather() {
             );
         }
     }, [data]);
+    /* end set html to display from results */
 
     useEffect(() => {
         getLocation();
