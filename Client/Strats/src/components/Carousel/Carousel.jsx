@@ -1,3 +1,5 @@
+// carousel documentation https://react-use-carousel-hook.vercel.app/examples
+
 import { useCarousel } from "react-use-carousel-hook";
 import "react-use-carousel-hook/dist/index.css";
 
