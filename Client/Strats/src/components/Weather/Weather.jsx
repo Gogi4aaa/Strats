@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import CalendarDay from '../CalendarDay/CalendarDay.jsx';
+import Slideshow from '../Carousel/Carousel.jsx';
+import Input from '../ui/Input/Input.jsx';
 import { convertTimeStampToUnixTime, formatDateTime, getMonthDay, getTime, convertToCelsius } from '../../helpers.js';
 
 import './Weather.scss';
@@ -216,13 +218,15 @@ export default function Weather() {
                 let day = days[i];
                 let dayData = [];
                 for (let j = 0; j < forecastData.length; j++) {
-                    let data = forecastData[j];
-                    if (day === data.currDay) {
-                        let index = data.index;
-                        let time = data.time;
-                        let temp = data.temp;
-                        let code = data.code;
-                        dayData.push({index, time, temp, code});
+                    if (j % 6 === 0) {
+                        let data = forecastData[j];
+                        if (day === data.currDay) {
+                            let index = data.index;
+                            let time = data.time;
+                            let temp = data.temp;
+                            let code = data.code;
+                            dayData.push({index, time, temp, code});
+                        }
                     }
                 }
                 daysData.push({day, dayData});
@@ -240,23 +244,23 @@ export default function Weather() {
                 <div className='current-weather'>
                     <div>
                         <div>
-                            <div>DateTime: {formatDateTime(convertTimeStampToUnixTime(resdata.current_weather.time))}</div>
+                            <div>{formatDateTime(convertTimeStampToUnixTime(resdata.current_weather.time))}</div>
                         </div>
-                        <div>
+                        {/* <div>
                             <div>Lat: {resdata.latitude}</div>
                             <div>Lng: {resdata.longitude}</div>
                         </div>
                         <div>
                             <div>Timezone: {tz}</div>
+                        </div> */}
+                        <div style={{ color: tempColor(resdata.current_weather.temperature) }}>
+                            Temp: {resdata.current_weather.temperature}{resdata.current_weather_units.temperature}
+                            ({convertToCelsius(resdata.current_weather.temperature)}&deg;C)
                         </div>
                         <div>
                             Wind: {resdata.current_weather.windspeed}{resdata.current_weather_units.windspeed}
                             &nbsp;
                             {getDirection(resdata.current_weather.winddirection)}
-                        </div>
-                        <div style={{ color: tempColor(resdata.current_weather.temperature) }}>
-                            Temp: {resdata.current_weather.temperature}{resdata.current_weather_units.temperature}
-                            ({convertToCelsius(resdata.current_weather.temperature)}&deg;C)
                         </div>
                     </div>
                     <div style={{ color: tempColor(resdata.current_weather.temperature) }}>
@@ -264,13 +268,12 @@ export default function Weather() {
                         &nbsp;
                         {obj.text}
                     </div>
-                    {
+                    {/* {
                         daysData.map(day => {
-                            return (
-                                <CalendarDay key={day.day} date={day.day} data={day.dayData} />
-                            )
+                            <CalendarDay key={day.day} date={day.day} data={day.dayData} />
                         })
-                    }
+                    } */}
+                    <Slideshow items={daysData} />
                 </div>
             );
         }
@@ -294,7 +297,7 @@ export default function Weather() {
     return (
         <>
             <div>
-                <input id='address' type='text' onKeyDown={keyDownHandler} placeholder='Enter a location' />
+                <Input id='address' type='text' onKeyDown={keyDownHandler} placeholder='Enter a location' />
             </div>
             {result !== null &&
                 <div>

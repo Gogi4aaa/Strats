@@ -5,11 +5,14 @@
     margin: 0 .15rem;
     padding: .5rem;
     background-color: rgba(map-get($color, black), .8);
+    width: 14rem;
+
 
     @include borderTopRadius;
     @include borderBottomRadius;
 
     &-day {
+        display: inline-block;
         text-align: center;
         font-weight: bold;
     }
@@ -20,7 +23,6 @@
 
         &-data {            
             display: block;
-            width: 6.5rem;
             margin: .25rem;
 
             @include fonts(
@@ -29,19 +31,10 @@
                 600,
                 map-get($color, darker)
             );
-
-            &-2 {
-                // height: 2.5rem;
-                width: 5rem;
-                margin: .25rem;
-    
-                @include fonts(
-                    map-get($font-family, noto),
-                    map-get($font-size, xs),
-                    600,
-                    map-get($color, darker)
-                );
-                }
         }
     }
+}
+
+.center {
+    text-align: center;
 }

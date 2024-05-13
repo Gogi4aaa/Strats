@@ -22,6 +22,7 @@ $color: (
     yellow: yellow,
     blue: steelblue,
     black: #000000,
+    white: #ffffff,
     dark: #252525,
     darker: #151515,
     light: #757575,
@@ -29,7 +30,7 @@ $color: (
 );
 
 $border-radius: .25rem;
-$background-image: './assets/OIP.jpg';
+// $background-image: './assets/OIP.jpg';
 
 @mixin noScroll {
     overflow-x: hidden;

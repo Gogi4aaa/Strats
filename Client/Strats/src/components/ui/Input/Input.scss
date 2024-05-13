@@ -1,0 +1,11 @@
+@import '../../../scss/base.scss';
+
+.input {
+    border: solid 1px map-get($color, darker);
+    padding: .25rem;
+
+    @include colors(
+        map-get($color, light),
+        map-get($color, darker)
+    );
+}

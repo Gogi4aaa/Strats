@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 import { convertToCelsius } from '../../helpers';
 
 import './CalendarDay.scss';
@@ -34,15 +36,20 @@ export default function CalendarDay({ date, data }) {
         }
     }
 
+    let monthDay = `${new Date().getMonth() + '/' + new Date().getDate()}`
+    let style;
+
+    if (monthDay === date) style = {border: 'solid 1px red'}
+
     return (
-        <div key={date + Math.random()} className="calendar">
+        <div key={date + Math.random()} className="calendar" style={style ? style : undefined}>
             <div className='calendar-day'>{date}</div>
             {data.map(d => {
                 return (
                     <div key={date + ' ' + d.time} className='calendar-hour'>
                         <span className='calendar-hour-data'>{d.time}</span>
-                        <span className='calendar-hour-data'>{d.temp}&deg;F({convertToCelsius(d.temp)})&deg;C</span>
-                        <span className='calendar-hour-data-2'>{getWeatherInterpretation(d.code)}</span>
+                        <span className='calendar-hour-data center'>{d.temp}&deg;F({convertToCelsius(d.temp)})&deg;C</span>
+                        <span className='calendar-hour-data center'>{getWeatherInterpretation(d.code)}</span>
                     </div>
                 )
             })}

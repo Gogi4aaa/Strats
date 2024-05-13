@@ -24,7 +24,7 @@ export default function DefaultPage({ icon, title, children, modalButtonText, mo
                 {modalContent}
             </Modal>
             <div className='defaultPage'>
-                <Header icon={icon} className='defaultPage-header'>{title}</Header>
+                {/* <Header icon={icon} className='defaultPage-header'>{title}</Header> */}
                 <section>
                     <div className='defaultPage-children'>{children}</div>
                 </section>
