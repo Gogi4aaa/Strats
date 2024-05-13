@@ -175,13 +175,19 @@ export default function Weather() {
     const days = [];
     const forecastData = [];
     const daysData = [];
+    const [clearTimer, setClearTimer] = useState(false);
 
     useEffect(() => {
         if (lat !== null && lng !== null && tz !== null) {
-            setInterval(() => {
+            let timer = setInterval(() => {
+                setClearTimer(false);
                 getForecast();
             }, 30000 /* 5 minutes * 60 seconds * 1000 milliseconds */);
             getForecast(); // Call 1 time, at start
+
+            if (clearTimer) {
+                clearInterval(timer);
+            }
         }
     }, [lat, lng, tz]);
     /* end call the API */
@@ -233,7 +239,7 @@ export default function Weather() {
 
     useEffect(() => {
         if (resdata !== null) {
-            console.log(resdata);
+            // console.log(resdata);
             getTimeOfDay();
             setResult(
                 <>
@@ -285,6 +291,7 @@ export default function Weather() {
         let key = event.key;
         
         if (key === 'Enter') {
+            setClearTimer(true);
             getLocation2();
         }
     }
