@@ -38,7 +38,7 @@
         top: 4rem;
         padding-top: 2rem;
         width: 15rem;
-        height: calc(100vh - 6rem);
+        height: calc(100vh - 4rem);
         text-align: center;
 
         transition: all .8s;
@@ -62,27 +62,28 @@
     @include fonts(
         map-get($font-family, roboto),
         map-get($font-size, lg),
-        600,
+        500,
         map-get($color, undefined)
     );
 
     &-item {
         &:hover {
-            @include colors(map-get($color, dark), map-get($color, white));
+            @include colors(map-get($color, lighter), map-get($color, white));
         }
     }
 
     &-link {
         text-decoration: none;
+        font-weight: 300;
 
         @include colors(
             map-get($color, transparent),
-            map-get($color, light)
+            map-get($color, dark)
         );
 
         &-active {
             text-decoration: none;
-            @include colors(map-get($color, transparent), map-get($color, white));
+            @include colors(map-get($color, transparent), map-get($color, black));
         }
     }
 }
