@@ -152,7 +152,7 @@ export default function Weather() {
             url: URL
         })
         .then((response) => {
-            console.log(response);
+            // console.log(response);
             setLat(response.data[0].lat);
             setLng(response.data[0].lon);
             
@@ -300,7 +300,6 @@ export default function Weather() {
             <div>
                 <input id='address' type='text' onKeyDown={keyDownHandler} placeholder='Enter a location' />
             </div>
-            {status !== null && <p>Status: {status}</p>}
             {result !== null &&
                 <div className='weather-results'>
                     {result}

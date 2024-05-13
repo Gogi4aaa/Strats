@@ -18,16 +18,30 @@
         background-color: map-get($color, lighter);
         border: solid 1px map-get($color, dark);
 
-        &-data {
+        &-data {            
             display: block;
-            width: 5rem;
+            width: 6.5rem;
             margin: .25rem;
-                @include fonts(
+
+            @include fonts(
                 map-get($font-family, noto),
                 map-get($font-size, xs),
                 600,
                 map-get($color, darker)
             );
+
+            &-2 {
+                // height: 2.5rem;
+                width: 5rem;
+                margin: .25rem;
+    
+                @include fonts(
+                    map-get($font-family, noto),
+                    map-get($font-size, xs),
+                    600,
+                    map-get($color, darker)
+                );
+                }
         }
     }
 }
