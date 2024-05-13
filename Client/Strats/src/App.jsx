@@ -12,7 +12,7 @@ class App extends Component {
     return (
       <>
         <Header className='main-header'><img src={logo} className='logo' /></Header>
-        <DefaultPage id="main" icon={undefined} title="Welcome to Strats!">
+        <DefaultPage id="weather">
           <Weather />
         </DefaultPage>
       </>

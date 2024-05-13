@@ -35,6 +35,8 @@
     flex-direction: row;
     width: 100%;
     height: 15.5rem;
+    padding-right: 17px;
+    box-sizing: content-box;
 
     grid-auto-columns: 33%;
     gap: 32px;
