@@ -1,0 +1,39 @@
+h2 {
+  font-family: "Titillium Web";
+  font-size: 18pt;
+  font-weight: 600;
+  color: #5caf31;
+}
+
+.defaultPage {
+  border: 1px solid #5caf31;
+  height: calc(100vh - 4rem);
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #151515;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.defaultPage-header {
+  position: sticky;
+  top: 0;
+  padding: 0 1rem;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+  background-color: #5caf31;
+  color: #21351a;
+}
+.defaultPage-header span {
+  font-family: "Titillium Web";
+  font-size: 18pt;
+  font-weight: 600;
+  color: #151515;
+}
+.defaultPage-children {
+  margin: 1rem;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}/*# sourceMappingURL=DefaultPage.css.map */

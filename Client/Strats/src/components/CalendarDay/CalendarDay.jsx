@@ -37,6 +37,7 @@ export default function CalendarDay({ date, data }) {
     }
 
     let monthDay = `${new Date().getMonth() + '/' + new Date().getDate()}`
+    console.log(monthDay);
     let style;
 
     if (monthDay === date) style = {border: 'solid 1px red'}
