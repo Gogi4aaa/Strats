@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import CalendarDay from '../CalendarDay/CalendarDay.jsx';
-import Slideshow from '../Carousel/Carousel.jsx';
+// import Slideshow from '../Carousel/Carousel.jsx';
 import Input from '../ui/Input/Input.jsx';
 import { convertTimeStampToUnixTime, formatDateTime, getMonthDay, getTime, convertToCelsius } from '../../helpers.js';
 
@@ -268,12 +268,16 @@ export default function Weather() {
                         &nbsp;
                         {obj.text}
                     </div>
-                    {/* {
-                        daysData.map(day => {
-                            <CalendarDay key={day.day} date={day.day} data={day.dayData} />
-                        })
-                    } */}
-                    <Slideshow items={daysData} />
+                    <div className="slideshow">
+                        {
+                            daysData.map(day => {
+                                return (
+                                    <CalendarDay key={day.day} date={day.day} data={day.dayData} />
+                                )
+                            })
+                        }
+                    </div>
+                    {/* <Slideshow items={daysData} /> */}
                 </div>
             );
         }
