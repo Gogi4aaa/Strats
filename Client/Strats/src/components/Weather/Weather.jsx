@@ -237,7 +237,7 @@ export default function Weather() {
         if (resdata !== null) {
             // console.log(resdata);
             setResult(
-                <>
+                <div className='current-weather'>
                     <div>
                         <div>
                             <div>DateTime: {formatDateTime(convertTimeStampToUnixTime(resdata.current_weather.time))}</div>
@@ -271,7 +271,7 @@ export default function Weather() {
                             )
                         })
                     }
-                </>
+                </div>
             );
         }
     }, [resdata]);
@@ -297,7 +297,7 @@ export default function Weather() {
                 <input id='address' type='text' onKeyDown={keyDownHandler} placeholder='Enter a location' />
             </div>
             {result !== null &&
-                <div className='weather-results'>
+                <div>
                     {result}
                 </div>
             }
