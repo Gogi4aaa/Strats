@@ -40,10 +40,18 @@ function getTime(dt) {
 
     return hours + ':' + minutes + ' ' + ampm;
 }
+function convertToCelsius(temperature) {
+    var celsius = (temperature - 32) * 5/9;
+    return celsius.toFixed(2);
+}
 
 export {
     convertTimeStampToUnixTime,
     formatDateTime,
+<<<<<<< HEAD
     getMonthDay,
     getTime
+=======
+    convertToCelsius
+>>>>>>> e8092efec42a0819e250f4e39ff8219216f79ac1
 }

@@ -5,7 +5,11 @@ import axios from 'axios';
 
 import CalendarDay from '../CalendarDay/CalendarDay.jsx';
 import Button from '../ui/Button/Button';
+<<<<<<< HEAD
 import { convertTimeStampToUnixTime, formatDateTime, getMonthDay, getTime } from '../../helpers.js';
+=======
+import { convertTimeStampToUnixTime, formatDateTime, convertToCelsius } from '../../helpers.js';
+>>>>>>> e8092efec42a0819e250f4e39ff8219216f79ac1
 
 import './Weather.scss';
 
@@ -125,7 +129,7 @@ export default function Weather() {
     function tempColor(temp) {
         if (temp >= 72) return 'red';
         if (temp >= 64 && temp < 72) return 'orangered';
-        if (temp >= 50 && temp < 64) return 'yellow';
+        if (temp >= 50 && temp < 64) return 'black';
         if (temp >= 40 && temp < 50) return 'steelblue';
         if (temp < 40) return 'blue';
     }
@@ -138,7 +142,9 @@ export default function Weather() {
             url: APIURL
         })
         .then((response) => {
-            setData(response.data);
+            setData(prevData => {
+                return response.data
+            });
             getWeatherInterpretation(response.data.current_weather.weathercode);
         })
         .catch((error) => {
@@ -233,8 +239,13 @@ export default function Weather() {
     const [result, setResult] = useState(null);
 
     useEffect(() => {
+<<<<<<< HEAD
         if (resdata !== null) {
             console.log(resdata);
+=======
+        if (data !== null) {
+                console.log(data);
+>>>>>>> e8092efec42a0819e250f4e39ff8219216f79ac1
             getTimeOfDay();
             setResult(
                 <>
@@ -254,8 +265,13 @@ export default function Weather() {
                             &nbsp;
                             {getDirection(resdata.current_weather.winddirection)}
                         </div>
+<<<<<<< HEAD
                         <div style={{ color: tempColor(resdata.current_weather.temperature) }}>
                             Temp: {resdata.current_weather.temperature}{resdata.current_weather_units.temperature}
+=======
+                        <div style={{ color: tempColor(data.current_weather.temperature) }}>
+                            {convertToCelsius(data.current_weather.temperature)}°C
+>>>>>>> e8092efec42a0819e250f4e39ff8219216f79ac1
                         </div>
                     </div>
                     <div style={{ color: tempColor(resdata.current_weather.temperature) }}>
@@ -302,7 +318,11 @@ export default function Weather() {
             {/* } */}
             {status !== null && <p>Status: {status}</p>}
             {result !== null &&
+<<<<<<< HEAD
                 <div className='weather-results'>
+=======
+                <div className="main-box weather-results">
+>>>>>>> e8092efec42a0819e250f4e39ff8219216f79ac1
                     {result}
                 </div>
             }
