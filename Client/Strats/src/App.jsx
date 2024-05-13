@@ -22,7 +22,7 @@ const router = createBrowserRouter([
     path: '/',
     element: <RootLayout />,
     errorElement: displayMessage('Error'),
-    children: [
+    children: [ // Add routes here
       {
         path: '/',
         element: <Suspense fallback={displayMessage('Status')}><Home /></Suspense>
