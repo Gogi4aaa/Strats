@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import CalendarDay from '../CalendarDay/CalendarDay.jsx';
-import { convertTimeStampToUnixTime, formatDateTime, getMonthDay, getTime } from '../../helpers.js';
+import { convertTimeStampToUnixTime, formatDateTime, getMonthDay, getTime, convertToCelsius } from '../../helpers.js';
 
 import './Weather.scss';
 
@@ -50,9 +50,10 @@ export default function Weather() {
     /* Pretty functions */
     const [isDaytime, setIsDaytime] = useState(null);
 
-    function getTimeOfDay() {
-        const today = new Date();
+    function getTimeOfDay(today) {
+        // const today = new Date();
         const hour = today.getHours();
+        console.log(today + ' \\ ' + hour);
         if (hour >= 6 && hour <= 18) {
             setIsDaytime(true);
         } else {
@@ -239,7 +240,7 @@ export default function Weather() {
     useEffect(() => {
         if (resdata !== null) {
             // console.log(resdata);
-            getTimeOfDay();
+            getTimeOfDay(convertTimeStampToUnixTime(resdata.current_weather.time));
             setResult(
                 <>
                     <div>

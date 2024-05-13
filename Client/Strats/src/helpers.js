@@ -40,5 +40,6 @@ export {
     convertTimeStampToUnixTime,
     formatDateTime,
     getMonthDay,
-    getTime
+    getTime,
+    convertToCelsius
 }
