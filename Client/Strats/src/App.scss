@@ -10,17 +10,7 @@
 }
 
 #main {
-  height: calc(100vh - 2rem);
+  height: calc(100vh - 4rem);
   
   @extend %noWhiteSpace;
-}
-
-.main-header {
-  background-color: map-get($color, primary);
-  padding: 0;
-  margin: 0;
-}
-
-.logo {
-  height: 4rem;
 }

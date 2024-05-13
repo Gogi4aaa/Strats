@@ -1,23 +1,42 @@
-import React, { Component } from 'react';
+import { lazy, Suspense } from "react";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import Header from './components/Header/Header';
-import DefaultPage from './components/DefaultPage/DefaultPage';
-import Weather from './components/Weather/Weather';
-import logo from './assets/logo.png';
+import RootLayout from "./Root";
 
-import './App.scss'
+import './App.scss';
 
-class App extends Component {
-  render() {
-    return (
-      <>
-        <Header className='main-header'><img src={logo} className='logo' /></Header>
-        <DefaultPage id="weather">
-          <Weather />
-        </DefaultPage>
-      </>
-    )
-  }
+const Home = lazy(() => import('./Pages/Home/Home'));
+const About = lazy(() => import('./Pages/About/About'));
+
+function displayMessage(type) {
+  return (
+    type === 'Error' ?
+      <div>An unexpected ERROR has occured!</div>
+    :
+      <div>Loading...</div>
+  )
 }
 
-export default App
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <RootLayout />,
+    errorElement: displayMessage('Error'),
+    children: [
+      {
+        path: '/',
+        element: <Suspense fallback={displayMessage('Status')}><Home /></Suspense>
+      },
+      {
+        path: '/About',
+        element: <Suspense fallback={displayMessage('Status')}><About /></Suspense>
+      }
+    ]
+  }
+])
+
+function App() {
+  return <RouterProvider router={router} />
+}
+
+export default App;

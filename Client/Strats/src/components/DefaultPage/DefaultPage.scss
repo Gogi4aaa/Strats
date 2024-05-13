@@ -1,7 +1,7 @@
 @import '../../scss/shared.scss';
 
 .defaultPage {
-    border: 1px solid map-get($color, primary);
+    // border: 1px solid map-get($color, primary);
     height: calc(100vh - 4rem);
 
     @include colors(

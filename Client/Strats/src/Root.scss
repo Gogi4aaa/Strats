@@ -1,0 +1,14 @@
+@import './scss/base.scss';
+
+.main-header {
+    background-color: map-get($color, primary);
+    height: 4rem;
+    padding: 0;
+    margin: 0;
+}
+
+.logo {
+    position: relative;
+    left: 2.5rem;
+    height: 3.8rem;
+}

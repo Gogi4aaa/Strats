@@ -1,0 +1,101 @@
+@import '../../scss/base.scss';
+
+.nav-icon {
+    position: absolute;
+    padding-left: 1rem;
+    top: 1rem;
+    font-size: map-get($font-size, xl);
+    z-index: 10;
+
+    transition: all 1.2s;
+  
+    &-menu {
+        &-show {
+            opacity: 1;
+        }
+        &-hide {
+            opacity: 0;
+        }
+    }
+  
+    &-close {
+        &-show {
+            opacity: 1;
+        }
+        &-hide {
+            opacity: 0;
+        }
+    }
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.navbar {
+    &-left {
+        position: absolute;
+        top: 4rem;
+        padding-top: 2rem;
+        width: 15rem;
+        height: calc(100vh - 6rem);
+        text-align: center;
+
+        transition: all .8s;
+
+        background-color: map-get($color, primary);
+
+        &-show {
+            left: 0;
+        }
+        &-hide {
+            left: -19rem;
+        }
+    }
+}
+ 
+.nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    @include fonts(
+        map-get($font-family, roboto),
+        map-get($font-size, lg),
+        600,
+        map-get($color, undefined)
+    );
+
+    &-item {
+        &:hover {
+            @include colors(map-get($color, dark), map-get($color, white));
+        }
+    }
+
+    &-link {
+        text-decoration: none;
+
+        @include colors(
+            map-get($color, transparent),
+            map-get($color, light)
+        );
+
+        &-active {
+            text-decoration: none;
+            @include colors(map-get($color, transparent), map-get($color, white));
+        }
+    }
+}
+       
+@media only screen and (max-width: 450px) {
+    .navbar {
+        &-left {
+            width: 100%;
+            left: 0;
+            
+            &-hide {
+                left: -100%;
+            }
+        }
+    }
+}
