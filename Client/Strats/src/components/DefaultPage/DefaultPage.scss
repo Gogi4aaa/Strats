@@ -23,12 +23,15 @@
             map-get($color, primary), 
             map-get($color, secondary)
         );
-        @include fonts(
-            map-get($font-family, titillium), 
-            map-get($font-size, lg), 
-            600, 
-            map-get($color, darker)
-        );
+
+        span {
+            @include fonts(
+                map-get($font-family, titillium), 
+                map-get($font-size, lg), 
+                600, 
+                map-get($color, darker)
+            );
+        }
     }
 
     &-children {

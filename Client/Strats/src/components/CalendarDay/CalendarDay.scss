@@ -1,0 +1,14 @@
+@import '../../scss/base.scss';
+
+.calendar {
+    &-day {
+        font-weight: bold;
+    }
+
+    &-hour {
+        span {
+            display: inline-block;
+            width: 5rem;
+        }
+    }
+}

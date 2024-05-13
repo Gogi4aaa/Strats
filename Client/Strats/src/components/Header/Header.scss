@@ -1,0 +1,10 @@
+@import '../../scss/base.scss';
+
+.header {
+    @include fonts(
+        map-get($font-family, titillium),
+        map-get($font-size, xl),
+        600,
+        map-get($color, primary)
+    );
+}
