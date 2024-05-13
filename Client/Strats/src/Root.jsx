@@ -1,4 +1,3 @@
-import React, { Component } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 
 import Header from './components/Header/Header';
@@ -12,7 +11,9 @@ function RootLayout() {
         <>
             <Header className='main-header'>
                 <Navbar />
-                <img src={logo} className='logo' />
+                <NavLink to="/" alt="Home">
+                    <img src={logo} className='logo' />
+                </NavLink>
             </Header>
             <Outlet />
         </>
