@@ -2,7 +2,12 @@
 
 .calendar {
     display: inline-block;
-    padding: .25rem;
+    margin: 0 .15rem;
+    padding: .5rem;
+    background-color: rgba(map-get($color, black), .8);
+
+    @include borderTopRadius;
+    @include borderBottomRadius;
 
     &-day {
         text-align: center;

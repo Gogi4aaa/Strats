@@ -38,7 +38,6 @@ export default function Weather() {
     const [lat, setLat] = useState(null);
     const [lng, setLng] = useState(null);
     const [tz, setTz] = useState(null);
-    const [status, setStatus] = useState(null);
 
     // get api url
     const APIURL = `${url}?latitude=${lat}&longitude=${lng}&timezone=${tz}&${forecastDays}&${currWeather}&${hourly}&${tempUnit}&${windUnit}&${precipUnit}`;
