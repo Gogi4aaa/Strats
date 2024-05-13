@@ -2,22 +2,27 @@
 
 .calendar {
     display: inline-block;
-    padding: 1rem;
+    padding: .25rem;
 
     &-day {
+        text-align: center;
         font-weight: bold;
     }
 
     &-hour {
-        span {
-            @include fonts(
-                map-get($font-family, noto),
-                map-get($font-size, sm),
-                600,
-                map-get($color, tertiary)
-            );
+        background-color: map-get($color, lighter);
+        border: solid 1px map-get($color, dark);
+
+        &-data {
             display: block;
             width: 5rem;
+            margin: .25rem;
+                @include fonts(
+                map-get($font-family, noto),
+                map-get($font-size, xs),
+                600,
+                map-get($color, darker)
+            );
         }
     }
 }
