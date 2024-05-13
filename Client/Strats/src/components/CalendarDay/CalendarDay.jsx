@@ -9,8 +9,8 @@ export default function CalendarDay({ date, data }) {
                 return (
                     <span key={date + ' ' + obj.time} className='calendar-hour'>
                         <span>{obj.time}</span>
-                        <span>{obj.temp}</span>
-                        <span>{obj.code}</span>
+                        <span>{obj.temp}({((obj.temp - 32) / 1.8).toFixed(2)})&deg;C</span>
+                        {/* <span>{obj.code}</span> */}
                     </span>
                 )
             })}

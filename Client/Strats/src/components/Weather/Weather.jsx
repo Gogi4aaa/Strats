@@ -4,12 +4,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import CalendarDay from '../CalendarDay/CalendarDay.jsx';
-import Button from '../ui/Button/Button';
-<<<<<<< HEAD
 import { convertTimeStampToUnixTime, formatDateTime, getMonthDay, getTime } from '../../helpers.js';
-=======
-import { convertTimeStampToUnixTime, formatDateTime, convertToCelsius } from '../../helpers.js';
->>>>>>> e8092efec42a0819e250f4e39ff8219216f79ac1
 
 import './Weather.scss';
 
@@ -129,7 +124,7 @@ export default function Weather() {
     function tempColor(temp) {
         if (temp >= 72) return 'red';
         if (temp >= 64 && temp < 72) return 'orangered';
-        if (temp >= 50 && temp < 64) return 'black';
+        if (temp >= 50 && temp < 64) return 'yellow';
         if (temp >= 40 && temp < 50) return 'steelblue';
         if (temp < 40) return 'blue';
     }
@@ -183,7 +178,6 @@ export default function Weather() {
 
     useEffect(() => {
         if (lat !== null && lng !== null && tz !== null) {
-            // console.log(lat + ', ' + lng);
             setInterval(() => {
                 getForecast();
             }, 30000 /* 5 minutes * 60 seconds * 1000 milliseconds */);
@@ -198,7 +192,6 @@ export default function Weather() {
             let numrows = resdata.hourly.time.length;
     
             let prevDay, currDay = '';
-            // const tempDay = [];
 
             for (let i = 0; i < numrows; i++) {
                 let index = i;
@@ -239,13 +232,8 @@ export default function Weather() {
     const [result, setResult] = useState(null);
 
     useEffect(() => {
-<<<<<<< HEAD
         if (resdata !== null) {
             console.log(resdata);
-=======
-        if (data !== null) {
-                console.log(data);
->>>>>>> e8092efec42a0819e250f4e39ff8219216f79ac1
             getTimeOfDay();
             setResult(
                 <>
@@ -265,13 +253,9 @@ export default function Weather() {
                             &nbsp;
                             {getDirection(resdata.current_weather.winddirection)}
                         </div>
-<<<<<<< HEAD
                         <div style={{ color: tempColor(resdata.current_weather.temperature) }}>
                             Temp: {resdata.current_weather.temperature}{resdata.current_weather_units.temperature}
-=======
-                        <div style={{ color: tempColor(data.current_weather.temperature) }}>
-                            {convertToCelsius(data.current_weather.temperature)}°C
->>>>>>> e8092efec42a0819e250f4e39ff8219216f79ac1
+                            ({((resdata.current_weather.temperature - 32) / 1.8).toFixed(2)}&deg;C)
                         </div>
                     </div>
                     <div style={{ color: tempColor(resdata.current_weather.temperature) }}>
@@ -305,24 +289,14 @@ export default function Weather() {
         }
     }
 
-    // useEffect(() => {
-    //     getLocation();
-    // }, []);
-
     return (
         <>
-            {/* {prompt === true && */}
-                <div>
-                    <input id='address' type='text' onKeyDown={keyDownHandler} placeholder='Enter a location' />
-                </div>
-            {/* } */}
+            <div>
+                <input id='address' type='text' onKeyDown={keyDownHandler} placeholder='Enter a location' />
+            </div>
             {status !== null && <p>Status: {status}</p>}
             {result !== null &&
-<<<<<<< HEAD
                 <div className='weather-results'>
-=======
-                <div className="main-box weather-results">
->>>>>>> e8092efec42a0819e250f4e39ff8219216f79ac1
                     {result}
                 </div>
             }
