@@ -300,7 +300,7 @@ export default function Weather() {
 
     return (
         <>
-            <div>
+            <div className='input-div'>
                 <Input id='address' type='text' placeholder='Enter a location' onKeyDown={keyDownHandler} />
             </div>
             {result !== null &&
