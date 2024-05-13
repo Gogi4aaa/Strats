@@ -53,7 +53,6 @@ export default function Weather() {
     function getTimeOfDay(today) {
         // const today = new Date();
         const hour = today.getHours();
-        console.log(today + ' \\ ' + hour);
         if (hour >= 6 && hour <= 18) {
             setIsDaytime(true);
         } else {
@@ -261,7 +260,7 @@ export default function Weather() {
                         </div>
                         <div style={{ color: tempColor(resdata.current_weather.temperature) }}>
                             Temp: {resdata.current_weather.temperature}{resdata.current_weather_units.temperature}
-                            ({((resdata.current_weather.temperature - 32) / 1.8).toFixed(2)}&deg;C)
+                            ({convertToCelsius(resdata.current_weather.temperature)}&deg;C)
                         </div>
                     </div>
                     <div style={{ color: tempColor(resdata.current_weather.temperature) }}>
