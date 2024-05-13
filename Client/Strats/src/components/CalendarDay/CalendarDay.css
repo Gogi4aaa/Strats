@@ -1,0 +1,35 @@
+.calendar {
+  display: inline-block;
+  margin: 0 0.15rem;
+  padding: 0.5rem;
+  background-color: rgba(0, 0, 0, 0.8);
+  width: 14rem;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+}
+.calendar-day {
+  display: inline-block;
+  text-align: center;
+  font-weight: bold;
+}
+.calendar-hour {
+  background-color: #999999;
+  border: solid 1px #252525;
+}
+.calendar-hour-data {
+  display: block;
+  margin: 0 0.25rem;
+  padding: 0.025rem;
+  min-width: 7rem;
+  background-color: #ffffff;
+  font-family: "Noto Sans";
+  font-size: 8pt;
+  font-weight: 600;
+  color: #151515;
+}
+
+.center {
+  text-align: center;
+}/*# sourceMappingURL=CalendarDay.css.map */

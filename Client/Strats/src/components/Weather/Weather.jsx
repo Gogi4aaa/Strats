@@ -9,6 +9,7 @@ import Input from '../ui/Input/Input.jsx';
 import { convertTimeStampToUnixTime, formatDateTime, getMonthDay, getTime, convertToCelsius } from '../../helpers.js';
 
 import './Weather.scss';
+import Button from '../ui/Button/Button.jsx';
 
 export default function Weather() {
     /* API vars */
@@ -33,7 +34,8 @@ export default function Weather() {
         cloudMoonRain: 'fa-solid fa-cloud-moon-rain',
         cloudBolt: 'fa-solid fa-cloud-bolt',
         smog: 'fa-solid fa-smog',
-        snowflake: 'fa-solid fa-snowflake'
+        snowflake: 'fa-solid fa-snowflake',
+        search: 'fa-solid fa-magnifying-glass'
     };
 
     /* get lat/lng from browser detect */ 
@@ -204,6 +206,7 @@ export default function Weather() {
                 let code = resdata.hourly.weathercode[i];
 
                 currDay = getMonthDay(convertTimeStampToUnixTime(resdata.hourly.time[i]));
+                console.log(currDay)
                 if (prevDay !== currDay) {
                     days.push(currDay);
                     prevDay = currDay;
@@ -300,8 +303,9 @@ export default function Weather() {
 
     return (
         <>
-            <div className='input-div'>
-                <Input id='address' type='text' placeholder='Enter a location' onKeyDown={keyDownHandler} />
+            <div className='input-div mb-4'>
+                <Input id='address' className="form-control" type='text' placeholder='Enter a location' onKeyDown={keyDownHandler} />
+                <button className="search-button"><i className={myIcons.search}></i></button>
             </div>
             {result !== null &&
                 <div>
