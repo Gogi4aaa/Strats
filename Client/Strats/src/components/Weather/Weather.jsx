@@ -48,15 +48,12 @@ export default function Weather() {
     const [obj, setObj] = useState(null);
 
     /* Pretty functions */
-    const [isDaytime, setIsDaytime] = useState(null);
-
-    function getTimeOfDay(today) {
-        // const today = new Date();
+    function getIsDaytime(today) {
         const hour = today.getHours();
         if (hour >= 6 && hour <= 18) {
-            setIsDaytime(true);
+            return true;
         } else {
-            setIsDaytime(false);
+            return false;
         }
     }
 
@@ -67,7 +64,8 @@ export default function Weather() {
         if (temp < 49) return 'darkblue';
     }
 
-    function getWeatherInterpretation(code) {
+    function getWeatherInterpretation(code, isDaytime) {
+        console.log(code + '  ' + isDaytime);
         switch(code) {
             case 0: setObj({text: 'Clear Sky', icon: isDaytime ? 'sun' : 'moon'}); break;
             case 1: setObj({text: 'Mainly Clear', icon: isDaytime ? 'sun' : 'moon'}); break;
@@ -139,7 +137,7 @@ export default function Weather() {
             setData(prevData => {
                 return response.data
             });
-            getWeatherInterpretation(response.data.current_weather.weathercode);
+            getWeatherInterpretation(response.data.current_weather.weathercode, getIsDaytime(convertTimeStampToUnixTime(response.data.current_weather.time)));
         })
         .catch((error) => {
             console.log(error);
@@ -193,7 +191,6 @@ export default function Weather() {
 
     useEffect(() => {
         if (resdata !== null) {
-
             let numrows = resdata.hourly.time.length;
     
             let prevDay, currDay = '';
@@ -239,7 +236,6 @@ export default function Weather() {
     useEffect(() => {
         if (resdata !== null) {
             // console.log(resdata);
-            getTimeOfDay(convertTimeStampToUnixTime(resdata.current_weather.time));
             setResult(
                 <>
                     <div>
@@ -264,7 +260,7 @@ export default function Weather() {
                         </div>
                     </div>
                     <div style={{ color: tempColor(resdata.current_weather.temperature) }}>
-                        <i className={`${myIcons[obj.icon]} ${isDaytime ? 'icon-day' : 'icon-night'}`}></i>
+                        <i className={`${myIcons[obj.icon]} ${getIsDaytime(convertTimeStampToUnixTime(resdata.current_weather.time)) ? 'icon-day' : 'icon-night'}`}></i>
                         &nbsp;
                         {obj.text}
                     </div>

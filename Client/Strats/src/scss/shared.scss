@@ -5,7 +5,7 @@
         map-get($font-family, noto),
         map-get($font-size, rg),
         600,
-        map-get($color, tertiary)
+        map-get($color, undefined)
     );
 }
 
