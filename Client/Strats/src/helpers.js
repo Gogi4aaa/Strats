@@ -17,7 +17,7 @@ function formatDateTime(dt) {
 }
 
 function getMonthDay(dt) {
-    return dt.getMonth() + '/' + dt.getDate();
+    return dt.getMonth() + 1 + '/' + dt.getDate();
 }
 
 function getTime(dt) {
