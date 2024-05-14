@@ -18,7 +18,7 @@ export default function Navbar() {
 
             <div className={`navbar-left ${showMenu ? 'navbar-left-show' : 'navbar-left-hide'}`}>
                 <Links linksContainer='ul' linksContainerClass="nav-list" links={
-                    <> // add routes here
+                    <>
                         <li className="nav-list-item">
                             <NavLink
                                 className={({isActive}) => isActive ? 'nav-list-link-active' : 'nav-list-link'}
