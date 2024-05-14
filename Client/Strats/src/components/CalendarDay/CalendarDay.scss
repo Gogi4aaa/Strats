@@ -4,13 +4,14 @@
     display: inline-block;
     margin: 0 .15rem;
     padding: .5rem;
-    background-color: rgba(map-get($color, black), .8);
+    background-color: map-get($color, primary);
     width: 14rem;
 
     @include borderTopRadius;
     @include borderBottomRadius;
 
     &-day {
+        color: map-get($color, dark);
         display: inline-block;
         text-align: center;
         font-weight: bold;
@@ -22,7 +23,7 @@
 
         &-data {            
             display: block;
-            margin: 0 .25rem;
+            margin: 0;
             padding: .025rem;
             min-width: 7rem;
             background-color: map-get($color, white);
