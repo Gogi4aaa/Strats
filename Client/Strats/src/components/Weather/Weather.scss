@@ -2,33 +2,39 @@
 
 .current-weather {
     padding: 1rem;
-    background-color: rgba(map-get($color, dark), .8);
+    text-align: center;
+    // background-color: rgba(map-get($color, dark), .8);
 
     @include fonts(
         map-get($font-family, noto),
-        map-get($font-size, sm),
+        map-get($font-size, lg),
         600,
         map-get($color, lighter)
     );
-}
 
-.icon {
-    &-night {
-        color: map-get($color, blue);
+    &-image-and-text {
+        @include flexbox(row, center);
     }
 
-    &-day {
-        color: map-get($color, rgb(243, 243, 46));
+    &-image {
+        width: 5rem;
+        position: absolute;
+        z-index: 2;
+    }
+
+    &-text {
+        position: relative;
+        top: 1.5rem;
     }
 }
 
-.main-box {
-    border-radius: 25px;
-    background: white;
-    padding: 20px;
-    width: 350px;
-    height: 200px;
-}
+// .main-box {
+//     border-radius: 25px;
+//     background: white;
+//     padding: 20px;
+//     width: 350px;
+//     height: 200px;
+// }
 
 .slideshow {
     display: flex;
@@ -56,6 +62,12 @@
         width: 20rem;
     }
 }
+
+.boxed-left {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
 .search-button {
     padding: 0.2rem 1rem 0 1.4rem!important;
     width: 50px;
@@ -69,13 +81,22 @@
         map-get($color, white)
     );
     border: 1px solid map-get($color, primary);
-    border-radius: 7px;
+    border-top-right-radius: $border-radius;
+    border-bottom-right-radius: $border-radius;
+    // border-radius: 7px;
+
+    i {
+        position: relative;
+        top: -.125rem;
+        left: -.125rem;
+    }
+    cursor: pointer;
 }
+
 .search-button:hover {
     border: 1px solid rgb(73, 165, 202);
     color: white;
     background-color: rgb(73, 165, 202);
     opacity: 0.9;
-    cursor: pointer;
-    border-radius: 7px;
+    // border-radius: 7px;
 }

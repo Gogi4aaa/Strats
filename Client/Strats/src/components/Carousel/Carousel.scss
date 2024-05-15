@@ -1,7 +1,6 @@
 @import '../../scss/base.scss';
 
 .carousel {
-    padding: auto;
     width: 100%;
 }
 
@@ -12,6 +11,7 @@
 
     grid-auto-columns: 30%;
     gap: 32px;
+    height: 10rem;;
     
     @media only screen and (max-width: 750px) {
         grid-auto-columns: 50%;
@@ -26,7 +26,6 @@
 .slide {
     position: relative;
     overflow: hidden;
-
 }
 .slide img {
     display: block;
@@ -41,23 +40,21 @@
 }
 
 .controls {
-    @include flexbox(row, center);
-    justify-items:center;
-    align-items: center;
-    text-align: center;
-    gap: 24px;
-    margin-top: 24px;
+    @include flexbox(row, space-between);
+    position: relative;
+    top: -4rem;
 }
 
 .control {
     justify-items: center;
     align-items: center;
-    // width: 32px;
-    // height: 32px;
-    // border-radius: 100%;
-    // background-color: #6b9080;
     border: none;
-    color: #ffffff;
+    font-size: map-get($font-size, xl);
+    
+    @include colors(
+        transparent,
+        map-get($color, primary)
+    )
 }
 .control:disabled {
     opacity: 0.4;

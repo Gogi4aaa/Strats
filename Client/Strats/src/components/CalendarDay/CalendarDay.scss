@@ -4,7 +4,7 @@
     display: inline-block;
     margin: 0 .15rem;
     padding: .5rem;
-    background-color: map-get($color, primary);
+    // background-color: map-get($color, primary);
     width: 14rem;
 
     @include borderTopRadius;
@@ -18,8 +18,8 @@
     }
 
     &-hour {
-        background-color: map-get($color, lighter);
-        border: solid 1px map-get($color, dark);
+        // background-color: map-get($color, lighter);
+        // border: solid 1px map-get($color, dark);
 
         &-data {            
             display: block;
@@ -34,6 +34,12 @@
                 600,
                 map-get($color, darker)
             );
+
+            &-image {
+                position: relative;
+                top: .75rem;
+                left: -.75rem;
+            }
         }
     }
 }

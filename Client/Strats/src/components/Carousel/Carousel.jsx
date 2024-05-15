@@ -8,7 +8,11 @@ import CalendarDay from '../CalendarDay/CalendarDay.jsx';
 import './Carousel.scss';
 
 export default function Slideshow({ items }) {
-    const { Carousel, Slides, Control, Pagination } = useCarousel();
+    const { Carousel, Slides, Control } = useCarousel();
+    const myIcons = {
+        prev: 'fa-solid fa-chevron-left',
+        next: 'fa-solid fa-chevron-right'
+    }
     console.log(items);
 
     return (
@@ -22,8 +26,10 @@ export default function Slideshow({ items }) {
             </Slides>
           
             <div className="controls">
-                <Control direction="prev" className="control carousel-control-prev-icon"></Control>
-                <Control direction="next" className="control carousel-control-next-icon"></Control>
+                {/* <Control direction="prev" className="control carousel-control-prev-icon"></Control>
+                <Control direction="next" className="control carousel-control-next-icon"></Control> */}
+                <Control direction="prev" className="control"><button className="control"><i className={myIcons.prev}></i></button></Control>
+                <Control direction="next" className="control"><button className="control"><i className={myIcons.next}></i></button></Control>
             </div>
         </Carousel>
     )

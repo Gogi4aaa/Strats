@@ -6,7 +6,8 @@ import axios from 'axios';
 import CalendarDay from '../CalendarDay/CalendarDay.jsx';
 // import Slideshow from '../Carousel/Carousel.jsx';
 import Input from '../ui/Input/Input.jsx';
-import { convertTimeStampToUnixTime, formatDateTime, getMonthDay, getTime, convertToCelsius } from '../../helpers.js';
+import { convertTimeStampToUnixTime, formatDateTime, getMonthDay, getTime, 
+    convertToCelsius, getWeatherInterpretation, getIsDaytime, getWindDirection, getTempColor } from '../../helpers.js';
 import './Weather.scss';
 import Button from '../ui/Button/Button.jsx';
 import Slideshow from '../Carousel/Carousel.jsx';
@@ -24,20 +25,11 @@ export default function Weather() {
     const forecastDays = 'forecast_days=7';
     /* end API Vars */
 
-    const myIcons = {
-        hotCoffee: 'fa-solid fa-mug-hot',
-        sun: 'fa-solid fa-sun',
-        moon: 'fa-solid fa-moon',
-        cloudSun: 'fa-solid fa-cloud-sun',
-        cloudMoon: 'fa-solid fa-cloud-moon',
-        cloudSunRain: 'fa-solid fa-cloud-sun-rain',
-        cloudMoonRain: 'fa-solid fa-cloud-moon-rain',
-        cloudBolt: 'fa-solid fa-cloud-bolt',
-        smog: 'fa-solid fa-smog',
-        snowflake: 'fa-solid fa-snowflake',
-        search: 'fa-solid fa-magnifying-glass'
-    };
+    const imagePath = 'weather-icons/animated'
 
+    const myIcons = {
+        search: 'fa-solid fa-magnifying-glass'
+    }
     /* get lat/lng from browser detect */ 
     const [lat, setLat] = useState(null);
     const [lng, setLng] = useState(null);
@@ -49,87 +41,6 @@ export default function Weather() {
 
     // data objects
     const [resdata, setData] = useState(null);
-    const [obj, setObj] = useState(null);
-
-    /* Pretty functions */
-    function getIsDaytime(today) {
-        const hour = today.getHours();
-        if (hour >= 6 && hour <= 18) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    function tempColor(temp) {
-        if (temp >= 72) return 'red';
-        if (temp < 72 && temp > 64) return 'orangered';
-        if (temp >= 50 && temp <= 64) return 'yellow';
-        if (temp < 49) return 'darkblue';
-    }
-
-    function getWeatherInterpretation(code, isDaytime) {
-        console.log(code + '  ' + isDaytime);
-        switch(code) {
-            case 0: setObj({text: 'Clear Sky', icon: isDaytime ? 'sun' : 'moon'}); break;
-            case 1: setObj({text: 'Mainly Clear', icon: isDaytime ? 'sun' : 'moon'}); break;
-            case 2: setObj({text: 'Partly Cloudy', icon: isDaytime ? 'cloudSun' : 'cloudMoon'}); break;
-            case 3: setObj({text: 'Overcast', icon: isDaytime ? 'cloudSun' : 'cloudMoon'}); break;
-            case 45: setObj({text: 'Fog', icon: 'smog'}); break;
-            case 51: setObj({text: 'Light Drizzle', icon: isDaytime ? 'cloudSunRain' : 'cloudMoonRain'}); break;
-            case 53: setObj({text: 'Moderate Drizzle', icon: isDaytime ? 'cloudSunRain' : 'cloudMoonRain'}); break;
-            case 55: setObj({text: 'Dense Drizzle', icon: isDaytime ? 'cloudSunRain' : 'cloudMoonRain'}); break;
-            case 56: setObj({text: 'Light Freezing Drizzle', icon: isDaytime ? 'cloudSunRain' : 'cloudMoonRain'}); break;
-            case 57: setObj({text: 'Dense Freezing Drizzle', icon: isDaytime ? 'cloudSunRain' : 'cloudMoonRain'}); break;
-            case 61: setObj({text: 'Slight Rain', icon: isDaytime ? 'cloudSunRain' : 'cloudMoonRain'}); break;
-            case 63: setObj({text: 'Moderate Rain', icon: isDaytime ? 'cloudSunRain' : 'cloudMoonRain'}); break;
-            case 65: setObj({text: 'Heavy Rain', icon: isDaytime ? 'cloudSunRain' : 'cloudMoonRain'}); break;
-            case 66: setObj({text: 'Light Freezing Rain', icon: isDaytime ? 'cloudSunRain' : 'cloudMoonRain'}); break;
-            case 67: setObj({text: 'Heavy Freezing Rain', icon: isDaytime ? 'cloudSunRain' : 'cloudMoonRain'}); break;
-            case 71: setObj({text: 'Slight Snow Fall', icon: 'snowflake'}); break;
-            case 73: setObj({text: 'Moderate Snow Fall', icon: 'snowflake'}); break;
-            case 75: setObj({text: 'Heavy Snow Fall', icon: 'snowflake'}); break;
-            case 77: setObj({text: 'Snow Grains', icon: 'snowflake'}); break;
-            case 80: setObj({text: 'Slight Rain Showers', icon: isDaytime ? 'cloudSunRain' : 'cloudMoonRain'}); break;
-            case 81: setObj({text: 'Moderate Rain Showers', icon: isDaytime ? 'cloudSunRain' : 'cloudMoonRain'}); break;
-            case 82: setObj({text: 'Violent Rain Showers', icon: isDaytime ? 'cloudSunRain' : 'cloudMoonRain'}); break;
-            case 85: setObj({text: 'Slight Snow Showers', icon: 'snowflake'}); break;
-            case 86: setObj({text: 'Heavy Snow Showers', icon: 'snowflake'}); break;
-            case 95: setObj({text: 'Slight or Moderate Thunderstorm', icon: 'cloudBolt'}); break;
-            default: setObj({text: 'Loading', icon: 'hotCoffee'});
-        }
-    }
-
-    function getDirection(code) {
-        if (code === 0 || code === 360) {
-            return 'E';
-        } else if (code < 90) {
-            return 'NE';
-        } else if (code === 90) {
-            return 'N';
-        } else if (code < 180) {
-            return 'NW'; 
-        } else if (code === 180) {
-            return 'W';
-        } else if (code < 270) {
-            return 'SW';
-        } else if (code === 270) {
-            return 'S';
-        } else if (code < 360) {
-            return 'SE';
-        } else {
-            return 'N/A';
-        };
-    };
-
-    function tempColor(temp) {
-        if (temp >= 72) return 'red';
-        if (temp >= 64 && temp < 72) return 'orangered';
-        if (temp >= 50 && temp < 64) return 'yellow';
-        if (temp >= 40 && temp < 50) return 'steelblue';
-        if (temp < 40) return 'blue';
-    }
-    /* end Pretty functions */
 
     /* call the API */
     function getForecast() {
@@ -141,7 +52,7 @@ export default function Weather() {
             setData(prevData => {
                 return response.data
             });
-            getWeatherInterpretation(response.data.current_weather.weathercode, getIsDaytime(convertTimeStampToUnixTime(response.data.current_weather.time)));
+            // getWeatherInterpretation(response.data.current_weather.weathercode, getIsDaytime(convertTimeStampToUnixTime(response.data.current_weather.time)));
         })
         .catch((error) => {
             console.log(error);
@@ -221,7 +132,7 @@ export default function Weather() {
                 let day = days[i];
                 let dayData = [];
                 for (let j = 0; j < forecastData.length; j++) {
-                    if (j % 4 === 0) {
+                    if (j % 3 === 0) {
                         let data = forecastData[j];
                         if (day === data.currDay) {
                             let index = data.index;
@@ -243,45 +154,32 @@ export default function Weather() {
     useEffect(() => {
         if (resdata !== null) {
             // console.log(resdata);
+            let interpretation = getWeatherInterpretation(resdata.current_weather.weathercode, getIsDaytime(convertTimeStampToUnixTime(resdata.current_weather.time)));
+            console.log(interpretation);
             setResult(
                 <div className='current-weather'>
                     <div>
                         <div>
                             <div>{formatDateTime(convertTimeStampToUnixTime(resdata.current_weather.time))}</div>
                         </div>
-                        {/* <div>
-                            <div>Lat: {resdata.latitude}</div>
-                            <div>Lng: {resdata.longitude}</div>
-                        </div>
-                        <div>
-                            <div>Timezone: {tz}</div>
-                        </div> */}
-                        <div style={{ color: tempColor(resdata.current_weather.temperature) }}>
-                            Temp: {resdata.current_weather.temperature}{resdata.current_weather_units.temperature}
+                        <div style={{ color: getTempColor(resdata.current_weather.temperature) }}>
+                            {resdata.current_weather.temperature}{resdata.current_weather_units.temperature}
+                            &nbsp;
                             ({convertToCelsius(resdata.current_weather.temperature)}&deg;C)
                         </div>
-                        <div>
-                            Wind: {resdata.current_weather.windspeed}{resdata.current_weather_units.windspeed}
-                            &nbsp;
-                            {getDirection(resdata.current_weather.winddirection)}
+                        <div className='current-weather-image-and-text'>
+                            <img className='current-weather-image' src={`${imagePath}/${interpretation.icon}.svg`} />
+                            <div className='current-weather-text' style={{ color: getTempColor(resdata.current_weather.temperature) }}>
+                                &nbsp;
+                            </div>
                         </div>
                     </div>
-                    <div style={{ color: tempColor(resdata.current_weather.temperature) }}>
-                        <i className={`${myIcons[obj.icon]} ${getIsDaytime(convertTimeStampToUnixTime(resdata.current_weather.time)) ? 'icon-day' : 'icon-night'}`}></i>
+                    <div>
+                        Wind: {resdata.current_weather.windspeed}{resdata.current_weather_units.windspeed}
                         &nbsp;
-                        {obj.text}
+                        {getWindDirection(resdata.current_weather.winddirection)}
                     </div>
-                    {/* display data without carousel */}
-                    {/* <div className="slideshow">
-                        {
-                            daysData.map(day => {
-                                return (
-                                    <CalendarDay key={day.day} date={day.day} data={day.dayData} />
-                                )
-                            })
-                        }
-                    </div> */}
-                    <Slideshow items={daysData} />
+                    <Slideshow className="slideshow" items={daysData} />
                 </div>
             );
         }
@@ -305,7 +203,7 @@ export default function Weather() {
     return (
         <>
             <div className='input-div mb-4'>
-                <Input id='address' className="form-control" type='text' placeholder='Enter a location' onKeyDown={keyDownHandler} />
+                <Input id='address' className="form-control boxed-left" type='text' placeholder='Enter a location' onKeyDown={keyDownHandler} />
                 <button className="search-button"><i className={myIcons.search}></i></button>
             </div>
             {result !== null &&
