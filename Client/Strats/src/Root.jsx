@@ -15,6 +15,12 @@ function RootLayout() {
                 <NavLink to="/" alt="Home">
                     <img src={logo} className='logo' />
                 </NavLink>
+                <NavLink
+                    className={({isActive}) => isActive ? 'link-active' : 'link'}
+                    to="/Login" alt="Login"
+                >
+                    Login
+                </NavLink>
             </Header>
             <ToastContainer stacked position="top-center" autoClose={5000} hideProgressBar={false} newestOnTop closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="light" transition: Slide/>
             <Outlet />

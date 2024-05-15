@@ -3,8 +3,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-import CalendarDay from '../CalendarDay/CalendarDay.jsx';
-// import Slideshow from '../Carousel/Carousel.jsx';
 import Input from '../ui/Input/Input.jsx';
 import { convertTimeStampToUnixTime, formatDateTime, getMonthDay, getTime, 
     convertToCelsius, getWeatherInterpretation, getIsDaytime, getWindDirection, getTempColor } from '../../helpers.js';
@@ -114,18 +112,19 @@ export default function Weather() {
             for (let i = 0; i < numrows; i++) {
                 let index = i;
                 let time = getTime(convertTimeStampToUnixTime(resdata.hourly.time[i]));
+                let unformatted_time = resdata.hourly.time[i];
                 let temp = resdata.hourly.temperature_2m[i];
                 let code = resdata.hourly.weathercode[i];
 
                 currDay = getMonthDay(convertTimeStampToUnixTime(resdata.hourly.time[i]));
-                console.log(currDay)
+
                 if (prevDay !== currDay) {
                     days.push(currDay);
                     prevDay = currDay;
                 }
 
                 forecastData.push(
-                    {currDay, index, time, temp, code}
+                    {currDay, index, time, unformatted_time, temp, code}
                 );
             }
 
@@ -138,9 +137,10 @@ export default function Weather() {
                         if (day === data.currDay) {
                             let index = data.index;
                             let time = data.time;
+                            let unformatted_time = data.unformatted_time;
                             let temp = data.temp;
                             let code = data.code;
-                            dayData.push({index, time, temp, code});
+                            dayData.push({currDay, index, time, unformatted_time, temp, code});
                         }
                     }
                 }
@@ -156,7 +156,7 @@ export default function Weather() {
         if (resdata !== null) {
             // console.log(resdata);
             let interpretation = getWeatherInterpretation(resdata.current_weather.weathercode, getIsDaytime(convertTimeStampToUnixTime(resdata.current_weather.time)));
-            console.log(interpretation);
+
             setResult(
                 <div className='current-weather'>
                     <div>

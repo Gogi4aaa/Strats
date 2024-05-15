@@ -13,6 +13,7 @@
     "@geoapify/geocoder-autocomplete": "^2.0.1",
     "@geoapify/react-geocoder-autocomplete": "^2.0.0",
     "axios": "^1.6.8",
+    "classnames": "^2.5.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.23.1",

@@ -11,7 +11,7 @@
 
     grid-auto-columns: 30%;
     gap: 32px;
-    height: 10rem;;
+    height: 25rem;;
     
     @media only screen and (max-width: 750px) {
         grid-auto-columns: 50%;
@@ -20,6 +20,9 @@
     @media only screen and (max-width: 500px) {
         grid-auto-columns: 110%;
     }
+
+    @include noScroll;
+    overflow-y: hidden;
 }
 
 /* Optional */
@@ -49,7 +52,6 @@
     justify-items: center;
     align-items: center;
     border: none;
-    font-size: map-get($font-size, xl);
     
     @include colors(
         transparent,
