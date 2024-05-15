@@ -24,10 +24,6 @@
 			try
 			{
 				result = await this.userService.Register(request);
-				if (result.Error != null || !result.IsValid)
-				{
-					return BadRequest(result.Error.Message);
-				}
 			}
 			catch (Exception e)
 			{
@@ -44,10 +40,6 @@
 			try
 			{
 				result = await this.userService.Login(request);
-				if (result.Error != null || !result.IsValid)
-				{
-					return BadRequest(result.Error.Message);
-				}
 			}
 			catch (Exception e)
 			{

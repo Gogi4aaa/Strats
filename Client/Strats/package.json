@@ -15,6 +15,7 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.23.1",
     "react-swipeable": "^7.0.1",
+    "react-toastify": "^10.0.5",
     "react-use-carousel-hook": "^0.0.5"
   },
   "devDependencies": {
