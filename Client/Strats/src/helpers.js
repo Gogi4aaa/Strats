@@ -60,9 +60,9 @@ function getWeatherInterpretation(code, isDaytime) {
         case 73: return({text: 'Moderate Snow Fall', icon: isDaytime ? 'snowy-2-day' : 'snowy-2-night'}); break;
         case 75: return({text: 'Heavy Snow Fall', icon: isDaytime ? 'snowy-3-day' : 'snowy-3-night'}); break;
         case 77: return({text: 'Snow Grains', icon: isDaytime ? 'snowy-1' : 'snowy-1'}); break;
-        case 80: return({text: 'Slight Rain Showers', icon: isDaytime ? 'cloudSunRain' : 'cloudMoonRain'}); break;
-        case 81: return({text: 'Moderate Rain Showers', icon: isDaytime ? 'cloudSunRain' : 'cloudMoonRain'}); break;
-        case 82: return({text: 'Violent Rain Showers', icon: isDaytime ? 'cloudSunRain' : 'cloudMoonRain'}); break;
+        case 80: return({text: 'Slight Rain Showers', icon: isDaytime ? 'rainy-1-day' : 'rainy-1-night'}); break;
+        case 81: return({text: 'Moderate Rain Showers', icon: isDaytime ? 'rainy-2-day' : 'rainy-3-night'}); break;
+        case 82: return({text: 'Violent Rain Showers', icon: isDaytime ? 'rainy-3-day' : 'rainy-3-night'}); break;
         case 85: return({text: 'Slight Snow Showers', icon: isDaytime ? 'snowy-1-day' : 'snowy-1-night'}); break;
         case 86: return({text: 'Heavy Snow Showers', icon: isDaytime ? 'snowy-3-day' : 'snowy-3-night'}); break;
         case 95: return({text: 'Slight or Moderate Thunderstorm', icon: isDaytime ? 'scattered-thunderstorms-day' : 'scattered-thunderstorms-night'}); break;

@@ -14,3 +14,35 @@
     height: 3.8rem;
     cursor: pointer;
 }
+
+.link {
+    position: relative;
+    top: 1rem;
+    float: right;
+    padding-right: 1rem;
+    text-decoration: none;
+    cursor: pointer;
+
+    @include fonts(
+        map-get($font-family, noto),
+        map-get($font-size, lg),
+        300,
+        map-get($color, white)
+    );
+
+    &-active {
+        position: relative;
+        top: 1rem;
+        float: right;
+        padding-right: 1rem;
+        text-decoration: none;
+        cursor: pointer;
+    
+        @include fonts(
+            map-get($font-family, noto),
+            map-get($font-size, lg),
+            bold,
+            map-get($color, white)
+        );
+    }
+}

@@ -3,6 +3,7 @@
 import { useCarousel } from "react-use-carousel-hook";
 import "react-use-carousel-hook/dist/index.css";
 
+import VerticalCarousel from "./VerticalCarousel.jsx";
 import CalendarDay from '../CalendarDay/CalendarDay.jsx';
 
 import './Carousel.scss';
@@ -26,10 +27,8 @@ export default function Slideshow({ items }) {
             </Slides>
           
             <div className="controls">
-                {/* <Control direction="prev" className="control carousel-control-prev-icon"></Control>
-                <Control direction="next" className="control carousel-control-next-icon"></Control> */}
-                <Control direction="prev" className="control"><button className="control"><i className={myIcons.prev}></i></button></Control>
-                <Control direction="next" className="control"><button className="control"><i className={myIcons.next}></i></button></Control>
+                <Control direction="prev" className="control"><i className={myIcons.prev}></i></Control>
+                <Control direction="next" className="control"><i className={myIcons.next}></i></Control>
             </div>
         </Carousel>
     )
