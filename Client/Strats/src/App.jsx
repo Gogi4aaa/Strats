@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RootLayout from "./Root";
 
 import './App.scss';
+import Login from "./Pages/Login/Login";
 
 const Home = lazy(() => import('./Pages/Home/Home'));
 const About = lazy(() => import('./Pages/About/About'));
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: '/About',
         element: <Suspense fallback={displayMessage('Status')}><About /></Suspense>
+      },
+      {
+        path: '/Login',
+        element: <Suspense fallback={displayMessage('Status')}><Login /></Suspense>
       }
     ]
   }

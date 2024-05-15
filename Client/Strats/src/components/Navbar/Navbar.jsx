@@ -35,6 +35,14 @@ export default function Navbar() {
                                 About
                             </NavLink>
                         </li>
+                        <li className="nav-list-item">
+                            <NavLink
+                                className={({isActive}) => isActive ? 'nav-list-link-active' : 'nav-list-link'}
+                                to="/Login" alt="Login" onClick={clickHandler}
+                            >
+                                Login
+                            </NavLink>
+                        </li>
                     </>
                 } />
             </div>
