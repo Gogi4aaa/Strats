@@ -2,6 +2,7 @@ import { useState } from "react"
 import "./LoginAndRegister.css"
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
 const SERVER_URL = "https://localhost:7129";
 export default function Login() {
 	const [loginValues, setLoginValues] = useState({username: '', password: ''});
@@ -32,11 +33,13 @@ export default function Login() {
 			if(result.data.isValid)
 				{
 					navigate("/");
+					toast.success("You are successfuly registered!")
 					//navigate user to main page for logged in users only
 				}
 		})
 		.catch(error => {
 			//notify user that something get wrong
+			toast.error("Unexpected error occurred!")
 		})
 	}
 	const Login = (event) => {
@@ -47,10 +50,15 @@ export default function Login() {
 				var token = result.data;
 				//check is token valid
 				navigate("/");
+				toast.success("You successfuly logged in!")
+			}
+			else{
+				toast.info("Wrong Data!");
 			}
 		})
 		.catch(error => {
 			//notify user that something get wrong
+			toast.error("Unexpected error occurred!")
 		})
 	}
 
