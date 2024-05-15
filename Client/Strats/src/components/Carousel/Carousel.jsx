@@ -21,9 +21,9 @@ export default function Slideshow({ items }) {
                 })}
             </Slides>
           
-            <div className="">
-                <Control direction="prev" className="carousel-control-prev carousel-control-prev-icon"></Control>
-                <Control direction="next" className="carousel-control-next carousel-control-next-icon"></Control>
+            <div className="controls">
+                <Control direction="prev" className="control carousel-control-prev-icon"></Control>
+                <Control direction="next" className="control carousel-control-next-icon"></Control>
             </div>
         </Carousel>
     )
