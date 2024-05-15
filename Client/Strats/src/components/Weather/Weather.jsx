@@ -221,7 +221,7 @@ export default function Weather() {
                 let day = days[i];
                 let dayData = [];
                 for (let j = 0; j < forecastData.length; j++) {
-                    if (j % 6 === 0) {
+                    if (j % 4 === 0) {
                         let data = forecastData[j];
                         if (day === data.currDay) {
                             let index = data.index;
