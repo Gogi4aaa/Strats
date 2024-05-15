@@ -1,5 +1,5 @@
 import { useState } from "react"
-import "../Login/Login.css"
+import "./LoginAndRegister.css"
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 const SERVER_URL = "https://localhost:7129";

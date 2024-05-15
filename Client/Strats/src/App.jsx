@@ -2,13 +2,11 @@ import { lazy, Suspense } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import RootLayout from "./Root";
-
 import './App.scss';
-import Login from "./Pages/Login/Login";
 
 const Home = lazy(() => import('./Pages/Home/Home'));
 const About = lazy(() => import('./Pages/About/About'));
-
+const Login = lazy(() => import('./Pages/LoginAndRegister/LoginAndRegister'))
 function displayMessage(type) {
   return (
     type === 'Error' ?
