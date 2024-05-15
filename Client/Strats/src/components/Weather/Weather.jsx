@@ -7,9 +7,9 @@ import CalendarDay from '../CalendarDay/CalendarDay.jsx';
 // import Slideshow from '../Carousel/Carousel.jsx';
 import Input from '../ui/Input/Input.jsx';
 import { convertTimeStampToUnixTime, formatDateTime, getMonthDay, getTime, convertToCelsius } from '../../helpers.js';
-
 import './Weather.scss';
 import Button from '../ui/Button/Button.jsx';
+import Slideshow from '../Carousel/Carousel.jsx';
 
 export default function Weather() {
     /* API vars */
@@ -271,7 +271,8 @@ export default function Weather() {
                         &nbsp;
                         {obj.text}
                     </div>
-                    <div className="slideshow">
+                    {/* display data without carousel */}
+                    {/* <div className="slideshow">
                         {
                             daysData.map(day => {
                                 return (
@@ -279,8 +280,8 @@ export default function Weather() {
                                 )
                             })
                         }
-                    </div>
-                    {/* <Slideshow items={daysData} /> */}
+                    </div> */}
+                    <Slideshow items={daysData} />
                 </div>
             );
         }

@@ -20,10 +20,10 @@ export default function Slideshow({ items }) {
                     )
                 })}
             </Slides>
-
-            <div className="controls">
-                <Control direction="prev" className="control">prev</Control>
-                <Control direction="next" className="control">next</Control>
+          
+            <div className="">
+                <Control direction="prev" className="carousel-control-prev carousel-control-prev-icon"></Control>
+                <Control direction="next" className="carousel-control-next carousel-control-next-icon"></Control>
             </div>
         </Carousel>
     )

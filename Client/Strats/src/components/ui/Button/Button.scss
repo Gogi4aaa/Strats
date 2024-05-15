@@ -1,6 +1,6 @@
 @import '../../../scss/base.scss';
 
-button {
+.btn {
     border: solid 1px map-get($color, primary);
     text-transform: uppercase;
     padding: .25rem 1rem;
