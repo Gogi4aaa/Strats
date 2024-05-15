@@ -48,7 +48,9 @@ export default function Login() {
 		.then(result => {
 			if(result.data){
 				var token = result.data;
-				//check is token valid
+				//TODO
+				localStorage.setItem("token", JSON.stringify(token));
+				//save token
 				navigate("/");
 				toast.success("You successfuly logged in!")
 			}

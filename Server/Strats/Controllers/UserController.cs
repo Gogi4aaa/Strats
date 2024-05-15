@@ -5,7 +5,9 @@
 	using Data.Models.ApiResponse;
 	using Data.Models.Request;
 	using Data.Models.Response;
+	using Microsoft.AspNetCore.Authorization;
 	using Services.Data.Interfaces;
+	using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 	[Route("[controller]/[action]")]
 	[ApiController]
@@ -24,6 +26,10 @@
 			try
 			{
 				result = await this.userService.Register(request);
+				if (!result.IsValid)
+				{
+					return BadRequest(result.Error);
+				}
 			}
 			catch (Exception e)
 			{
@@ -40,6 +46,10 @@
 			try
 			{
 				result = await this.userService.Login(request);
+				if (!result.IsValid)
+				{
+					return BadRequest(result.Error);
+				}
 			}
 			catch (Exception e)
 			{
@@ -47,6 +57,14 @@
 			}
 
 			return Ok(result.Data);
+		}
+
+		[HttpGet]
+		[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+		public ActionResult Test()
+		{
+			
+			return Ok();
 		}
 	}
 }

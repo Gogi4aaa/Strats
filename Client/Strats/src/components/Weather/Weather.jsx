@@ -11,6 +11,7 @@ import { convertTimeStampToUnixTime, formatDateTime, getMonthDay, getTime,
 import './Weather.scss';
 import Button from '../ui/Button/Button.jsx';
 import Slideshow from '../Carousel/Carousel.jsx';
+import SearchBar from '../ui/SearchBar/SearchBar.jsx';
 
 export default function Weather() {
     /* API vars */
@@ -206,6 +207,7 @@ export default function Weather() {
                 <Input id='address' className="form-control boxed-left" type='text' placeholder='Enter a location' onKeyDown={keyDownHandler} />
                 <button className="search-button"><i className={myIcons.search}></i></button>
             </div>
+            <SearchBar />
             {result !== null &&
                 <div>
                     {result}

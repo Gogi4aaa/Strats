@@ -32,7 +32,7 @@
 				claims: identityClaims,
 				issuer: jwtIssuer,
 				audience: jwtAudience,
-				expires: DateTime.UtcNow.AddDays(7),
+				expires: DateTime.Now.AddSeconds(5),
 				signingCredentials: creds);
 
 			var jwt = new JwtSecurityTokenHandler().WriteToken(token);
@@ -57,7 +57,7 @@
 			int userId;
 			if (userIdRawValue == null)
 			{
-				throw new Exception("User is not logged in");
+				return -1;//
 			}
 
 			if (int.TryParse(userIdRawValue, out userId))
