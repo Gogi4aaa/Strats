@@ -39,3 +39,33 @@
     /*when hovering an item:*/
     background-color: rgba(0, 0, 0, 0.1);
   }
+
+  .input-div {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    width: 40%;
+    margin: 0 auto;
+  }
+  
+  .search-button {
+    padding: 0.2rem 1rem 0 1.4rem !important;
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 0;
+    color: white;
+    background-color: rgb(73, 165, 202);
+    border: 1px solid rgb(73, 165, 202);
+    border-radius: 7px;
+  }
+  
+  .search-button:hover {
+    border: 1px solid rgb(73, 165, 202);
+    color: white;
+    background-color: rgb(73, 165, 202);
+    opacity: 0.9;
+    cursor: pointer;
+    border-radius: 7px;
+  }
