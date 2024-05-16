@@ -3,18 +3,27 @@ import "../SearchBar/SearchBar.css";
 const MIN_ADDRESS_LENGTH = 3;
 const DEBOUNCE_DELAY = -1000;
 const API_KEY = "341662abfefd4fe7a7d2121f1d802360";
-
+import Select from 'react-select'
+import axios from "axios";
 export default function SearchBar() {
   const [currentLocation, setcurrentLocation] = useState("");
   const [data, setData] = useState([]);
+  const [searchData, setSearchData] = useState([]);
+  const [categories, setCategories] = useState();
+  const [currentLocationInfo, setcurrentLocationInfo] = useState(null);
+  const options = [
+    { value: 'chocolate', label: 'Chocolate' },
+    { value: 'strawberry', label: 'Strawberry' },
+    { value: 'vanilla', label: 'Vanilla' }
+  ]
 
   function handleInputChange(e) {
     setcurrentLocation(e.target.value);
     console.log(currentLocation);
   }
   function handleAdressClick(result){
+    setcurrentLocationInfo(result);
     setcurrentLocation(result.formatted)
-    console.log(result.formatted)
   }
   function getLocations() {
     if (currentLocation.length < MIN_ADDRESS_LENGTH) {
@@ -54,11 +63,24 @@ export default function SearchBar() {
   }
   useEffect(() => {
     getLocations();
+    console.log(currentLocationInfo)
+    console.log(data)
+    if(currentLocationInfo != null){
+      //url for finding places near the typed place in search bar
+    const url = `https://api.geoapify.com/v2/places?categories=catering.restaurant&filter=circle:${currentLocationInfo.lon},${currentLocationInfo.lat},2000&limit=20&apiKey=${API_KEY}`
+    axios.get(url)
+    .then(result => {
+      //save data for later searching on map
+      setSearchData(result.data)
+      console.log(result.data)
+    })
+      }
   }, [currentLocation]);
   return (
     <>
       <div className="autocomplete-container" id="autocomplete-container">
         <div className="input-container input-div">
+          <Select options={options} />
           <input
             className="form-control boxed-left"
             onChange={handleInputChange}
