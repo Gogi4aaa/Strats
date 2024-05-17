@@ -108,6 +108,38 @@ export default function SearchBar() {
     navigator.geolocation.watchPosition(success, error);
   }
 
+  function MapConfiguration(){
+    var array = [];
+    if (searchData.length > 0) {
+      array = searchData.map((destination) => {
+        return {
+          coords: {
+            latitude: destination.geometry.coordinates[1],
+            longitude: destination.geometry.coordinates[0],
+          },
+        };
+      });
+      addPointsOnMap(array);
+    } else {
+      if (marker) {
+        map.removeLayer(marker);
+        map.removeLayer(circle);
+      }
+      if (currentLocationInfo != null) {
+        circle = L.circle([currentLocationInfo.lat, currentLocationInfo.lon], {
+          radius: 3000,
+        }).addTo(map);
+        marker = L.marker([
+          currentLocationInfo.lat,
+          currentLocationInfo.lon,
+        ]).addTo(map);
+        map.setView([currentLocationInfo.lat, currentLocationInfo.lon]);
+        toast.info(
+          "We couldn't find anything in your category at the specified location!"
+        );
+      }
+    }
+  }
   function addPointsOnMap(array) {
     if (marker) {
       map.removeLayer(marker);
@@ -243,36 +275,7 @@ export default function SearchBar() {
     }
   }
   useEffect(() => {
-    var array = [];
-    if (searchData.length > 0) {
-      array = searchData.map((destination) => {
-        return {
-          coords: {
-            latitude: destination.geometry.coordinates[1],
-            longitude: destination.geometry.coordinates[0],
-          },
-        };
-      });
-      addPointsOnMap(array);
-    } else {
-      if (marker) {
-        map.removeLayer(marker);
-        map.removeLayer(circle);
-      }
-      if (currentLocationInfo != null) {
-        circle = L.circle([currentLocationInfo.lat, currentLocationInfo.lon], {
-          radius: 3000,
-        }).addTo(map);
-        marker = L.marker([
-          currentLocationInfo.lat,
-          currentLocationInfo.lon,
-        ]).addTo(map);
-        map.setView([currentLocationInfo.lat, currentLocationInfo.lon]);
-        toast.info(
-          "We couldn't find anything in your category at the specified location!"
-        );
-      }
-    }
+    MapConfiguration();
   }, [searchData]);
   useEffect(() => {
     initializeMap();
@@ -313,6 +316,7 @@ export default function SearchBar() {
           </div>
         </div>
         <div className="map-div">
+          {/* We can extend map in separate component */}
           <div id="map"></div>
         </div>
       </div>
