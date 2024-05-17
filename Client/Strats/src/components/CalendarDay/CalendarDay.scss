@@ -25,6 +25,8 @@
         // border-bottom: solid 1px map-get($color, lighter);
         height: 9rem;
 
+        transition: all 1.2s;
+
         &-data {            
             display: block;
             margin: 0;

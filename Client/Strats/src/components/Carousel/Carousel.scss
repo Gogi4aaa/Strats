@@ -9,11 +9,15 @@
     justify-content: start;
     align-items: start;
 
-    grid-auto-columns: calc(100vw - 71.5%);
+    grid-auto-columns: calc(100vw - 80.5%);
     gap: 32px;
     height: 25rem;;
     
-    @media only screen and (max-width: 750px) {
+    @media only screen and (max-width: 1024px) {
+        grid-auto-columns: calc(100vw - 76%);
+    }
+    
+    @media only screen and (max-width: 768px) {
         grid-auto-columns: calc(100vw - 62%);
     }
     

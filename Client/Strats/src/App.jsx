@@ -12,7 +12,7 @@ function displayMessage(type) {
     type === 'Error' ?
       <div>An unexpected ERROR has occured!</div>
     :
-      <div>Loading...</div>
+      <div className="overlay">Loading...</div>
   )
 }
 
