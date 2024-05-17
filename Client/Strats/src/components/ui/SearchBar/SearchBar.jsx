@@ -78,8 +78,7 @@ export default function SearchBar() {
   ]
 
   //Map functionality
-  var map = null;
-  var marker, circle, zoomed;
+  var map, marker, circle, zoomed;
   function initializeMap () {
     map = L.map('map').setView([51.505, -0.09], 13);
     var container = L.DomUtil.get("map");
@@ -88,7 +87,6 @@ export default function SearchBar() {
     }
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
-    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 
   navigator.geolocation.watchPosition(success, error);
@@ -104,8 +102,8 @@ export default function SearchBar() {
       map.removeLayer(marker);
       map.removeLayer(circle);
     }
-    var marker = L.marker([lat, lng]).addTo(map);
-    var circle = L.circle([lat, lng], {radius: accuracy }).addTo(map);
+    marker = L.marker([lat, lng]).addTo(map);
+    circle = L.circle([lat, lng], {radius: accuracy }).addTo(map);
     if(!zoomed){
       zoomed = map.fitBounds(circle.getBounds());
     }
@@ -169,7 +167,7 @@ export default function SearchBar() {
   }
   useEffect(() => {
     initializeMap()
-  }, [map])//could be without map here
+  }, [])//could be without map here
   useEffect(() => {
     setTimeout(() => {
       getLocations();
