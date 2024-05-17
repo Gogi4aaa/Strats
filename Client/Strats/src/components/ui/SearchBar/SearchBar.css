@@ -4,6 +4,7 @@
   
   .input-container {
     display: flex;
+    justify-content: space-between;
     position: relative;
   }
   
@@ -26,7 +27,7 @@
   
     z-index: 99;
     top: calc(100% + 2px);
-    left: 0;
+    left: 20;
     right: 0;
   }
   
@@ -74,7 +75,7 @@
     z-index: 1;
   }
   .map-div{
-    margin-top: 2rem;
+    margin-top: 10rem;
     position: relative;
     width: 100%;
     height: 600px;
