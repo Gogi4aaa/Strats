@@ -4,7 +4,7 @@
     padding-left: 1rem;
     top: 1rem;
     font-size: map-get($font-size, xl);
-    z-index: 10;
+    z-index: 10000;
 
     transition: all 1.2s;
   
@@ -39,6 +39,7 @@
         width: 15rem;
         height: calc(100vh - 4rem);
         text-align: center;
+        z-index: 10;
 
         transition: all .8s;
 
