@@ -1,9 +1,8 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 
 import './Carousel.scss';
 
 const VerticalCarousel = ({ children, setThisTop }) => {
-    const contentDiv = useRef();
     const [activeIndex, setActiveIndex] = useState(0);
 
     const myIcons = {
@@ -13,16 +12,16 @@ const VerticalCarousel = ({ children, setThisTop }) => {
 
     const [top, setTop] = useState(0);
 
-    const measure = 9;
-    const upperBound = 7;
+    const MEASURE = 9;
+    const UPPERBOUND = 7;
     
     const handleClick = (direction) => {
         if (direction === 'prev' && activeIndex > 0) {
             setActiveIndex(activeIndex - 1);
-            setTop(top + measure);
-        } else if (direction === 'next' && activeIndex < upperBound) {
+            setTop(top + MEASURE);
+        } else if (direction === 'next' && activeIndex < UPPERBOUND) {
             setActiveIndex(activeIndex + 1);
-            setTop(top - measure);
+            setTop(top - MEASURE);
         }
         console.log('top: ' + top + 'activeIndex: ' + activeIndex);
     }
@@ -38,12 +37,12 @@ const VerticalCarousel = ({ children, setThisTop }) => {
                 >
                     <i className={myIcons.prev}></i>
                 </button>
-                <div ref={contentDiv} className="vertical-content">
+                <div className="vertical-content">
                     {children}
                 </div>
                 <button
                     type="button"
-                    className={`control ${-top === (upperBound * measure) ? 'disabled' : undefined}`}
+                    className={`control ${-top === (UPPERBOUND * MEASURE) ? 'disabled' : undefined}`}
                     // onClick={(() => handleClick('next'))}
                     onClick={(() => { setThisTop('next'); handleClick('next') })}
                 >
