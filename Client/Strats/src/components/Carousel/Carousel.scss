@@ -9,7 +9,7 @@
     justify-content: start;
     align-items: start;
 
-    grid-auto-columns: 30%;
+    grid-auto-columns: 33%;
     gap: 32px;
     height: 25rem;;
     
@@ -18,7 +18,7 @@
     }
     
     @media only screen and (max-width: 500px) {
-        grid-auto-columns: 110%;
+        grid-auto-columns: 100%;
     }
 
     @include noScroll;
@@ -45,7 +45,7 @@
 .controls {
     @include flexbox(row, space-between);
     position: relative;
-    top: -4rem;
+    top: -18rem;
 }
 
 .control {
@@ -58,6 +58,6 @@
         map-get($color, primary)
     )
 }
-.control:disabled {
+.control:disabled, .disabled {
     opacity: 0.4;
 }

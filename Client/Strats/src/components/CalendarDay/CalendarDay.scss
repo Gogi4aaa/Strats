@@ -5,8 +5,8 @@
     margin: 0 .15rem;
     padding: 0 0.5rem;
     width: 14rem;
-    height: 6.5rem;
-    overflow-y: scroll;
+    height: 9rem;
+    overflow-y: hidden;
 
     @include borderTopRadius;
     @include borderBottomRadius;
@@ -22,7 +22,8 @@
     }
 
     &-hour {
-        border-bottom: solid 1px map-get($color, lighter);
+        // border-bottom: solid 1px map-get($color, lighter);
+        height: 9rem;
 
         &-data {            
             display: block;
@@ -32,16 +33,25 @@
 
             @include fonts(
                 map-get($font-family, noto),
-                map-get($font-size, xs),
+                map-get($font-size, rg),
                 600,
                 map-get($color, darker)
             );
 
             &-image {
-                height: 3rem;
+                height: 4rem;
             }
         }
     }
+}
+
+.time {
+    @include fonts(
+        map-get($font-family, noto),
+        map-get($font-size, rg),
+        bold,
+        map-get($color, red)
+    );
 }
 
 .center {

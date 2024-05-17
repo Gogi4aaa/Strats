@@ -14,7 +14,6 @@ export default function Slideshow({ items }) {
         prev: 'fa-solid fa-chevron-left',
         next: 'fa-solid fa-chevron-right'
     }
-    console.log(items);
 
     return (
         <Carousel className="carousel">
