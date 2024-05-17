@@ -85,3 +85,32 @@ $border-radius: .25rem;
     padding: 0;
     margin: 0;
 }
+
+h2 {
+    @include fonts(
+        map-get($font-family, titillium),
+        map-get($font-size, lg),
+        600,
+        map-get($color, primary)
+    );
+}
+
+.overlay {
+    @include flexbox(column, center);
+
+    text-align: center;
+    
+    @include fonts(
+        map-get($font-family, noto),
+        map-get($font-size, lg),
+        600,
+        map-get($color, transparent)
+    );
+
+    @include colors(
+        rgba(map-get($color, dark), .8),
+        map-get($color, primary)
+    );
+
+    @extend %fullSpace;
+}
