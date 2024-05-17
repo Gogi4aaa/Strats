@@ -139,7 +139,6 @@ export default function SearchBar() {
         }
       });
     }
-    console.log(allMarkers)
   }
   function success(pos) {
     const lat = pos.coords.latitude;
@@ -184,7 +183,6 @@ export default function SearchBar() {
   }
   function handleInputChange(e) {
     setcurrentLocation(e.target.value);
-    console.log(currentLocation);
   }
   function handleAdressClick(result) {
     setcurrentLocationInfo(result);
@@ -213,7 +211,6 @@ export default function SearchBar() {
         (data) => {
           // here we get address suggestions
           setData(data.results);
-          console.log(data);
         },
         (err) => {
           if (!err.canceled) {
@@ -230,6 +227,7 @@ export default function SearchBar() {
     if (currentLocationInfo != null && category != null) {
       //url for finding places near the typed place in search bar
       const url = `https://api.geoapify.com/v2/places?categories=${category}&filter=circle:${currentLocationInfo.lon},${currentLocationInfo.lat},2000&limit=20&apiKey=${API_KEY}`;
+      
       //delete markers from the map
       allMarkers.map(x => {
         map.removeLayer(x)
@@ -238,16 +236,13 @@ export default function SearchBar() {
         //save data for later searching on map
         if (result.data.features.length == 0) {
           setSearchData([]);
-          console.log(1);
         } else {
           setSearchData(result.data.features);
         }
-        console.log(result.data.features);
       });
     }
   }
   useEffect(() => {
-    console.log(1)
     var array = [];
     if (searchData.length > 0) {
       array = searchData.map((destination) => {
@@ -284,7 +279,6 @@ export default function SearchBar() {
   }, []); //could be without map here
 
   useEffect(() => {
-    console.log(3)
     setTimeout(() => {
       getLocations();
     }, 1000);
