@@ -3,7 +3,6 @@
 import { useCarousel } from "react-use-carousel-hook";
 import "react-use-carousel-hook/dist/index.css";
 
-import VerticalCarousel from "./VerticalCarousel.jsx";
 import CalendarDay from '../CalendarDay/CalendarDay.jsx';
 
 import './Carousel.scss';
