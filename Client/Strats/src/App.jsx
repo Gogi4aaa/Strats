@@ -10,7 +10,7 @@ const Login = lazy(() => import('./Pages/LoginAndRegister/LoginAndRegister'))
 function displayMessage(type) {
   return (
     type === 'Error' ?
-      <div>An unexpected ERROR has occured!</div>
+      <div className="overlay">An unexpected ERROR has occured!</div>
     :
       <div className="overlay">Loading...</div>
   )
