@@ -106,7 +106,7 @@ function getWindDirection(code) {
 function getTempColor(temp) {
     if (temp >= 72) return 'red';
     if (temp >= 64 && temp < 72) return 'orangered';
-    if (temp >= 50 && temp < 64) return 'yellow';
+    if (temp >= 50 && temp < 64) return 'goldenrod';
     if (temp >= 40 && temp < 50) return 'steelblue';
     if (temp < 40) return 'blue';
 }

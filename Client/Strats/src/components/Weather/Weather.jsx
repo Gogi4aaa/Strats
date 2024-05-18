@@ -2,12 +2,12 @@
 
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 import Input from '../ui/Input/Input.jsx';
 import { convertTimeStampToUnixTime, formatDateTime, getMonthDay, getTime, 
     convertToCelsius, getWeatherInterpretation, getIsDaytime, getWindDirection, getTempColor } from '../../helpers.js';
 import './Weather.scss';
-import Button from '../ui/Button/Button.jsx';
 import Slideshow from '../Carousel/Carousel.jsx';
 import SearchBar from '../ui/SearchBar/SearchBar.jsx';
 
@@ -74,12 +74,12 @@ export default function Weather() {
                 if (data.results && data.results.length > 0) {
                     setTz(data.results[0].timezone.name);
                 } else {
-                    console.log("No location found");
+                    toast.error("Please enter a valid location.");
                 }
             });
         })
         .catch((error) => {
-            console.log(error);
+            toast.error("Please enter a valid location.");
         })
     }
 
@@ -196,16 +196,20 @@ export default function Weather() {
         let key = event.key;
         
         if (key === 'Enter') {
-            setClearTimer(true);
-            getLocation2();
+            clearAndGetLocation();
         }
     }
+
+    function clearAndGetLocation() {
+        setClearTimer(true);
+        getLocation2();
+}
 
     return (
         <>
             <div className='input-div mb-4'>
                 <Input id='address' className="form-control boxed-left" type='text' placeholder='Enter a location' onKeyDown={keyDownHandler} />
-                <button className="search-button"><i className={myIcons.search}></i></button>
+                <button className="search-button" onClick={clearAndGetLocation}><i className={myIcons.search}></i></button>
             </div>
             <SearchBar />
             {result !== null &&
