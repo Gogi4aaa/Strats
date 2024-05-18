@@ -152,7 +152,8 @@ export default function SearchBar() {
         const lat = pos.coords.latitude;
         const lng = pos.coords.longitude;
         myMarker = L.marker([lat, lng], {icon: greenIcon}).addTo(map);
-        myMarker.bindPopup(`<b>${pos.data.street}</b>`);//here
+        var textForPopup = `<b>${pos.data.street}</b><br><h5>${pos.data.postcode} ${pos.data.city}, ${pos.data.country}</h5><ul>${pos.data.categories.map(x => `<li>${x.name}</li>`)}</ul>`;
+        myMarker.bindPopup(textForPopup);//here
         allMarkers.push(myMarker);
         if (viewCount == 1) {
             circle = L.circle(
