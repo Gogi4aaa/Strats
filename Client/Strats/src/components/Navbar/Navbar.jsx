@@ -38,6 +38,14 @@ export default function Navbar() {
                         <li className="nav-list-item">
                             <NavLink
                                 className={({isActive}) => isActive ? 'nav-list-link-active' : 'nav-list-link'}
+                                to="/SearchDestination" alt="SearchDestination" onClick={clickHandler}
+                            >
+                                Search Destination
+                            </NavLink>
+                        </li>
+                        <li className="nav-list-item">
+                            <NavLink
+                                className={({isActive}) => isActive ? 'nav-list-link-active' : 'nav-list-link'}
                                 to="/Login" alt="Login" onClick={clickHandler}
                             >
                                 Login

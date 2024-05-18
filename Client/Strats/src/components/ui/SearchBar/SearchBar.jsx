@@ -16,7 +16,7 @@ const greenIcon = new L.Icon({
   popupAnchor: [1, -34],
   shadowSize: [41, 41]
 });
-var oneTimeMapInitalization = 0;
+
 var map, marker, circle, zoomed, myMarker;
 var viewCount = 0;
 var allMarkers = [];
@@ -95,11 +95,11 @@ export default function SearchBar() {
     { value: "sport.stadium", label: "Stadiums" },
     { value: "public_transport", label: "Public Transport stations" },
   ];
-
+  var oneTimeMapInitalization = 0;
   //Map functionality
 
   function initializeMap() {
-    map = L.map("map").setView([1, -1], 13);
+    map = L.map("map").setView([51.513, -0.09], 13);
     var container = L.DomUtil.get("map");
     if (container != null) {
       container._leaflet_id = null;
@@ -107,7 +107,7 @@ export default function SearchBar() {
     L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
       maxZoom: 19,
     }).addTo(map);
-    navigator.geolocation.watchPosition(success, error);
+    navigator.geolocation.getCurrentPosition(success, error);
 }
   function success(pos) {
   const lat = pos.coords.latitude;
@@ -123,6 +123,7 @@ export default function SearchBar() {
   if (!zoomed) {
       zoomed = map.fitBounds(circle.getBounds());
   }
+  map.setView([lat, lng], 11);
   }
   function error(err) {
   if (err.code == 1) {

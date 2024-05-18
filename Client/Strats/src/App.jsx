@@ -6,7 +6,8 @@ import './App.scss';
 
 const Home = lazy(() => import('./Pages/Home/Home'));
 const About = lazy(() => import('./Pages/About/About'));
-const Login = lazy(() => import('./Pages/LoginAndRegister/LoginAndRegister'))
+const Login = lazy(() => import('./Pages/LoginAndRegister/LoginAndRegister'));
+const SearchDestiantion = lazy(() => import('./Pages/SearchDestination/SearchDestination'));
 function displayMessage(type) {
   return (
     type === 'Error' ?
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
       {
         path: '/Login',
         element: <Suspense fallback={displayMessage('Status')}><Login /></Suspense>
+      },
+      {
+        path: '/SearchDestination',
+        element: <Suspense fallback={displayMessage('Status')}><SearchDestiantion /></Suspense>
       }
     ]
   }
