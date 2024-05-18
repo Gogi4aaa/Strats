@@ -16,6 +16,7 @@ const greenIcon = new L.Icon({
   popupAnchor: [1, -34],
   shadowSize: [41, 41]
 });
+var oneTimeMapInitalization = 0;
 var map, marker, circle, zoomed, myMarker;
 var viewCount = 0;
 var allMarkers = [];
@@ -108,7 +109,7 @@ export default function SearchBar() {
     }).addTo(map);
     navigator.geolocation.watchPosition(success, error);
 }
-function success(pos) {
+  function success(pos) {
   const lat = pos.coords.latitude;
   const lng = pos.coords.longitude;
   const accuracy = pos.coords.accuracy;
@@ -150,8 +151,9 @@ function success(pos) {
         if (viewCount <= 1) viewCount++;
         const lat = pos.coords.latitude;
         const lng = pos.coords.longitude;
-            myMarker = L.marker([lat, lng], {icon: greenIcon}).addTo(map);
-            allMarkers.push(myMarker);
+        myMarker = L.marker([lat, lng], {icon: greenIcon}).addTo(map);
+        myMarker.bindPopup(`<b>${pos.data.street}</b>`);//here
+        allMarkers.push(myMarker);
         if (viewCount == 1) {
             circle = L.circle(
             [currentLocationInfo.lat, currentLocationInfo.lon],
@@ -242,7 +244,11 @@ function success(pos) {
     }
   }
   useEffect(() => {
-    initializeMap();
+    if(oneTimeMapInitalization == 0){
+        initializeMap();
+        oneTimeMapInitalization++;
+    }
+    
 }, []);
   useEffect(() => {
     setTimeout(() => {

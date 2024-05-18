@@ -16,6 +16,14 @@ export default function Map({searchData, currentLocationInfo, map, marker, circl
             latitude: destination.geometry.coordinates[1],
             longitude: destination.geometry.coordinates[0],
             },
+            data:{
+                street: destination.properties.street,
+                postcode: destination.properties.postcode,
+                categories: destination.properties.categories.map(x => {
+                    return {category: x}
+                }),
+                
+            }
         };
         });
         addPoints(array);
