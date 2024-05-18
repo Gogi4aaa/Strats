@@ -70,14 +70,3 @@
     cursor: pointer;
     border-radius: 7px;
   }
-  #map {
-    height: 350px;
-    z-index: 1;
-  }
-  .map-div{
-    margin-top: 10rem;
-    position: relative;
-    width: 100%;
-    height: 600px;
-    z-index: 1;
-  }

@@ -6,12 +6,9 @@ const API_KEY = "341662abfefd4fe7a7d2121f1d802360";
 import Select from "react-select";
 import axios from "axios";
 import { toast } from "react-toastify";
+import Map from "../../Map/Map";
 //variables that not change when any state is changing
-var map, marker, circle, zoomed, myMarker;
-var viewCount = 0;
-var allMarkers = [];
-//marker green color
-var greenIcon = new L.Icon({
+const greenIcon = new L.Icon({
   iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
   shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
   iconSize: [25, 41],
@@ -19,6 +16,10 @@ var greenIcon = new L.Icon({
   popupAnchor: [1, -34],
   shadowSize: [41, 41]
 });
+var map, marker, circle, zoomed, myMarker;
+var viewCount = 0;
+var allMarkers = [];
+//marker green color
 export default function SearchBar() {
   const [currentLocation, setcurrentLocation] = useState("");
   const [data, setData] = useState([]);
@@ -106,99 +107,65 @@ export default function SearchBar() {
       maxZoom: 19,
     }).addTo(map);
     navigator.geolocation.watchPosition(success, error);
-  }
+}
+function success(pos) {
+  const lat = pos.coords.latitude;
+  const lng = pos.coords.longitude;
+  const accuracy = pos.coords.accuracy;
 
-  function MapConfiguration(){
-    var array = [];
-    if (searchData.length > 0) {
-      array = searchData.map((destination) => {
-        return {
-          coords: {
-            latitude: destination.geometry.coordinates[1],
-            longitude: destination.geometry.coordinates[0],
-          },
-        };
-      });
-      addPointsOnMap(array);
-    } else {
-      if (marker) {
-        map.removeLayer(marker);
-        map.removeLayer(circle);
-      }
-      if (currentLocationInfo != null) {
-        circle = L.circle([currentLocationInfo.lat, currentLocationInfo.lon], {
-          radius: 3000,
-        }).addTo(map);
-        marker = L.marker([
-          currentLocationInfo.lat,
-          currentLocationInfo.lon,
-        ]).addTo(map);
-        map.setView([currentLocationInfo.lat, currentLocationInfo.lon]);
-        toast.info(
-          "We couldn't find anything in your category at the specified location!"
-        );
-      }
-    }
+  if (marker) {
+      map.removeLayer(marker);
+      map.removeLayer(circle);
+  }
+  marker = L.marker([lat, lng]).addTo(map);
+  circle = L.circle([lat, lng], { radius: accuracy }).addTo(map);
+  if (!zoomed) {
+      zoomed = map.fitBounds(circle.getBounds());
+  }
+  }
+  function error(err) {
+  if (err.code == 1) {
+      alert("Please allow geolocation access!");
+  } else {
+      alert("Cannot get current location");
+  }
   }
   function addPointsOnMap(array) {
     if (marker) {
-      map.removeLayer(marker);
-      map.removeLayer(circle);
+        map.removeLayer(marker);
+        map.removeLayer(circle);
     }
     if (Object.keys(array).length == 0) {
-      circle = L.circle([currentLocationInfo.lat, currentLocationInfo.lon], {
+        circle = L.circle([currentLocationInfo.lat, currentLocationInfo.lon], {
         radius: 3000,
-      }).addTo(map);
-      marker = L.marker([
+        }).addTo(map);
+        marker = L.marker([
         currentLocationInfo.lat,
         currentLocationInfo.lon,
-      ]).addTo(map);
-      map.setView([lat, lng]);
+        ]).addTo(map);
+        map.setView([lat, lng]);
     } else {
-      allMarkers = []
-      array.map((pos) => {
+        allMarkers = [];
+        array.map((pos) => {
         if (viewCount <= 1) viewCount++;
         const lat = pos.coords.latitude;
         const lng = pos.coords.longitude;
-          myMarker = L.marker([lat, lng], {icon: greenIcon}).addTo(map);
-          allMarkers.push(myMarker);
+            myMarker = L.marker([lat, lng], {icon: greenIcon}).addTo(map);
+            allMarkers.push(myMarker);
         if (viewCount == 1) {
-          circle = L.circle(
+            circle = L.circle(
             [currentLocationInfo.lat, currentLocationInfo.lon],
             { radius: 3000 }
-          ).addTo(map);
-          map.setView([currentLocationInfo.lat, currentLocationInfo.lon]);
+            ).addTo(map);
+            map.setView([currentLocationInfo.lat, currentLocationInfo.lon]);
         }
-      });
+        });
     }
-  }
-  function success(pos) {
-    const lat = pos.coords.latitude;
-    const lng = pos.coords.longitude;
-    const accuracy = pos.coords.accuracy;
-
-    if (marker) {
-      map.removeLayer(marker);
-      map.removeLayer(circle);
     }
-    marker = L.marker([lat, lng]).addTo(map);
-    circle = L.circle([lat, lng], { radius: accuracy }).addTo(map);
-    if (!zoomed) {
-      zoomed = map.fitBounds(circle.getBounds());
-    }
-  }
-  function error(err) {
-    if (err.code == 1) {
-      alert("Please allow geolocation access!");
-    } else {
-      alert("Cannot get current location");
-    }
-  }
   // Map functionality END
 
   function handleSearchButtonClick() {
     if (category && currentLocation) {
-      searchData.map(x => map.removeLayer(myMarker))
         viewCount = 0;
       findSearchedData();
       
@@ -275,12 +242,8 @@ export default function SearchBar() {
     }
   }
   useEffect(() => {
-    MapConfiguration();
-  }, [searchData]);
-  useEffect(() => {
     initializeMap();
-  }, []); //could be without map here
-
+}, []);
   useEffect(() => {
     setTimeout(() => {
       getLocations();
@@ -315,10 +278,7 @@ export default function SearchBar() {
             })}
           </div>
         </div>
-        <div className="map-div">
-          {/* We can extend map in separate component */}
-          <div id="map"></div>
-        </div>
+            <Map searchData={searchData} viewCount={viewCount} allMarkers={allMarkers} currentLocationInfo={currentLocationInfo} map={map} marker={marker} circle={circle} addPoints={addPointsOnMap}/>
       </div>
     </>
   );
