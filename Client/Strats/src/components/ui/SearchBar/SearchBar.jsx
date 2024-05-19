@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import "../SearchBar/SearchBar.css";
 const MIN_ADDRESS_LENGTH = 3;
 const DEBOUNCE_DELAY = -1000;

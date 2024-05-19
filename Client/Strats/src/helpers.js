@@ -1,4 +1,3 @@
-import "../src/helpers.css"
 function convertTimeStampToUnixTime(timestamp) {
     // Converts a timestamp to Unix Time
     return new Date(timestamp);
