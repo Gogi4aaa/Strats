@@ -1,3 +1,4 @@
+import "../src/helpers.css"
 function convertTimeStampToUnixTime(timestamp) {
     // Converts a timestamp to Unix Time
     return new Date(timestamp);
@@ -111,7 +112,120 @@ function getTempColor(temp) {
     if (temp < 40) return 'blue';
 }
 /* end Pretty functions */
-
+var styles = {
+    all: {
+    width: '30px',
+    height: '30px',
+    border: '1px solid ',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: '5px',
+    },
+    accommodation: {
+        icon: '<i class="fa-solid fa-bed"></i>',
+        background: '#C4A484',
+    },
+    activity: {
+        icon: '<i class="fa-solid fa-person-running"></i>',
+        background: 'lightgreen'
+    },
+    airport: {
+        icon: '<i class="fa-solid fa-plane"></i>',
+        background: 'lightblue'
+    },
+    commercial: {
+        icon: '<i class="fa-solid fa-store"></i>',
+        background: '#FF999C'
+    },
+    catering: {
+        icon: '<i class="fa-solid fa-utensils"></i>',
+        background: 'lightgreen'
+    },
+    education: {
+        icon: '<i class="fa-solid fa-user-graduate"></i>',
+        background: '#FFD580'
+    },
+    office: {
+        icon: '<i class="fa-regular fa-building"></i>',
+        background: '#59788E'
+    },
+    parking: {
+        icon: '<i class="fa-solid fa-square-parking"></i>',
+        background: 'Golden'
+    },
+    pet: {
+        icon: '<i class="fa-solid fa-dog"></i>',
+        background: '#C4A484'
+    },
+    stadium: {
+        icon: '<i class="fa-solid fa-person-running"></i>',
+        background: 'lightgreen'
+    },
+    fitness: {
+        icon: '<i class="fa-solid fa-dumbbell"></i>',
+        background: 'lightgreen'
+    },
+    public_transport: {
+        icon: '<i class="fa-solid fa-bus"></i>',
+        background: 'lightblue'
+    },
+}
+var categoriesIcons = {
+    accommodation: `<div style='width: ${styles.all.width}; height: ${styles.all.height}; border: ${styles.all.border + styles.accommodation.background}; background: ${styles.accommodation.background}; border-radius: ${styles.all.borderRadius};display: ${styles.all.display}; align-items: ${styles.all.alignItems}; justify-content: ${styles.all.justifyContent};'>${styles.accommodation.icon}</div>`,
+    activity: `<div style='width: ${styles.all.width}; height: ${styles.all.height}; border: ${styles.all.border + styles.activity.background}; background: ${styles.activity.background}; border-radius: ${styles.all.borderRadius};display: ${styles.all.display}; align-items: ${styles.all.alignItems}; justify-content: ${styles.all.justifyContent};'>${styles.activity.icon}</div>`,
+    airport: `<div style='width: ${styles.all.width}; height: ${styles.all.height}; border: ${styles.all.border + styles.airport.background}; background: ${styles.airport.background}; border-radius: ${styles.all.borderRadius};display: ${styles.all.display}; align-items: ${styles.all.alignItems}; justify-content: ${styles.all.justifyContent};'>${styles.airport.icon}</div>`,
+    commercial: `<div style='width: ${styles.all.width}; height: ${styles.all.height}; border: ${styles.all.border + styles.commercial.background}; background: ${styles.commercial.background}; border-radius: ${styles.all.borderRadius};display: ${styles.all.display}; align-items: ${styles.all.alignItems}; justify-content: ${styles.all.justifyContent};'>${styles.commercial.icon}</div>`,
+    catering: `<div style='width: ${styles.all.width}; height: ${styles.all.height}; border: ${styles.all.border + styles.catering.background}; background: ${styles.catering.background}; border-radius: ${styles.all.borderRadius};display: ${styles.all.display}; align-items: ${styles.all.alignItems}; justify-content: ${styles.all.justifyContent};'>${styles.catering.icon}</div>`,
+    education: `<div style='width: ${styles.all.width}; height: ${styles.all.height}; border: ${styles.all.border + styles.education.background}; background: ${styles.education.background}; border-radius: ${styles.all.borderRadius};display: ${styles.all.display}; align-items: ${styles.all.alignItems}; justify-content: ${styles.all.justifyContent};'>${styles.education.icon}</div>`,
+    office: `<div style='width: ${styles.all.width}; height: ${styles.all.height}; border: ${styles.all.border + styles.office.background}; background: ${styles.office.background}; border-radius: ${styles.all.borderRadius};display: ${styles.all.display}; align-items: ${styles.all.alignItems}; justify-content: ${styles.all.justifyContent};'>${styles.office.icon}</div>`,
+    parking: `<div style='width: ${styles.all.width}; height: ${styles.all.height}; border: ${styles.all.border + styles.parking.background}; background: ${styles.parking.background}; border-radius: ${styles.all.borderRadius};display: ${styles.all.display}; align-items: ${styles.all.alignItems}; justify-content: ${styles.all.justifyContent};'>${styles.parking.icon}</div>`,
+    pet: `<div style='width: ${styles.all.width}; height: ${styles.all.height}; border: ${styles.all.border + styles.pet.background}; background: ${styles.pet.background}; border-radius: ${styles.all.borderRadius};display: ${styles.all.display}; align-items: ${styles.all.alignItems}; justify-content: ${styles.all.justifyContent};'>${styles.pet.icon}</div>`,
+    stadium: `<div style='width: ${styles.all.width}; height: ${styles.all.height}; border: ${styles.all.border + styles.stadium.background}; background: ${styles.stadium.background}; border-radius: ${styles.all.borderRadius};display: ${styles.all.display}; align-items: ${styles.all.alignItems}; justify-content: ${styles.all.justifyContent};'>${styles.stadium.icon}</div>`,
+    fitness: `<div style='width: ${styles.all.width}; height: ${styles.all.height}; border: ${styles.all.border + styles.fitness.background}; background: ${styles.fitness.background}; border-radius: ${styles.all.borderRadius};display: ${styles.all.display}; align-items: ${styles.all.alignItems}; justify-content: ${styles.all.justifyContent};'>${styles.fitness.icon}</div>`,
+    public_transport: `<div style='width: ${styles.all.width}; height: ${styles.all.height}; border: ${styles.all.border + styles.public_transport.background}; background: ${styles.public_transport.background}; border-radius: ${styles.all.borderRadius};display: ${styles.all.display}; align-items: ${styles.all.alignItems}; justify-content: ${styles.all.justifyContent};'>${styles.public_transport.icon}</div>`,
+}
+function filterMapCategory(category){
+    if(category != null && category != undefined){
+        
+    if(category.includes("accommodation")){
+        return categoriesIcons.accommodation;
+    }
+    else if(category.includes("activity")){
+        return categoriesIcons.activity;
+    }
+    else if(category.includes("airport")){
+        return categoriesIcons.airport;
+    }
+    else if(category.includes("commercial")){
+        return categoriesIcons.commercial;
+    }
+    else if(category.includes("catering")){
+        return categoriesIcons.catering;
+    }
+    else if(category.includes("education")){
+        return categoriesIcons.education;
+    }
+    else if(category.includes("office")){
+        return categoriesIcons.office;
+    }
+    else if(category.includes("parking")){
+        return categoriesIcons.parking;
+    }
+    else if(category.includes("pet")){
+        return categoriesIcons.pet;
+    }
+    else if(category.includes("stadium")){
+        return categoriesIcons.stadium;
+    }
+    else if(category.includes("fitness")){
+        return categoriesIcons.fitness;
+    }
+    else if(category.includes("public_transport")){
+        return categoriesIcons.public_transport;
+    }
+}
+}
 export {
     convertTimeStampToUnixTime,
     formatDateTime,
@@ -121,5 +235,6 @@ export {
     getWeatherInterpretation,
     getIsDaytime,
     getWindDirection,
-    getTempColor
+    getTempColor,
+    filterMapCategory
 }

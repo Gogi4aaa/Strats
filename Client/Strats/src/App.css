@@ -1,4 +1,4 @@
-#root {
+#root, .overlay {
   width: 100%;
   height: 100%;
 }
@@ -12,7 +12,19 @@ h2 {
   font-family: "Titillium Web";
   font-size: 18pt;
   font-weight: 600;
-  color: #5caf31;
+  color: #49A5Ca;
+}
+
+.overlay {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  font-family: "Noto Sans";
+  font-size: 18pt;
+  font-weight: 600;
+  background-color: rgba(37, 37, 37, 0.8);
+  color: #49A5Ca;
 }
 
 #root {
@@ -25,15 +37,5 @@ h2 {
 }
 
 #main {
-  height: calc(100vh - 2rem);
-}
-
-.main-header {
-  background-color: #5caf31;
-  padding: 0;
-  margin: 0;
-}
-
-.logo {
-  height: 4rem;
+  height: calc(100vh - 4rem);
 }/*# sourceMappingURL=App.css.map */

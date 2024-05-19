@@ -1,12 +1,9 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import Links from '../ui/Links/Links.jsx';
-
 import './Navbar.scss';
-
 export default function Navbar() {
     const [showMenu, setShowMenu] = useState(false);
-
     function clickHandler() {
       setShowMenu(!showMenu);
     }

@@ -1,21 +1,42 @@
+.overlay {
+  width: 100%;
+  height: 100%;
+}
+
+h2 {
+  font-family: "Titillium Web";
+  font-size: 18pt;
+  font-weight: 600;
+  color: #49A5Ca;
+}
+
+.overlay {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  font-family: "Noto Sans";
+  font-size: 18pt;
+  font-weight: 600;
+  background-color: rgba(37, 37, 37, 0.8);
+  color: #49A5Ca;
+}
+
 .current-weather {
   padding: 1rem;
-  background-color: rgba(37, 37, 37, 0.8);
+  text-align: center;
   font-family: "Noto Sans";
-  font-size: 10pt;
+  font-size: 18pt;
   font-weight: 600;
   color: #999999;
 }
-
-.icon-night {
-  color: steelblue;
+.current-weather-image-and-text {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
-.main-box {
-  border-radius: 25px;
-  background: white;
-  padding: 20px;
-  width: 350px;
-  height: 200px;
+.current-weather-image {
+  width: 6rem;
 }
 
 .slideshow {
@@ -35,8 +56,18 @@
   text-align: center;
   display: flex;
   justify-content: center;
-  width: 20%;
+  width: 25rem;
   margin: 0 auto;
+}
+@media only screen and (max-width: 450px) {
+  .input-div {
+    width: 20rem;
+  }
+}
+
+.boxed-left {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
 .search-button {
@@ -46,10 +77,17 @@
   justify-content: center;
   align-items: center;
   min-width: 0;
-  color: white;
-  background-color: rgb(73, 165, 202);
-  border: 1px solid rgb(73, 165, 202);
-  border-radius: 7px;
+  background-color: #49A5Ca;
+  color: #ffffff;
+  border: 1px solid #49A5Ca;
+  border-top-right-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+  cursor: pointer;
+}
+.search-button i {
+  position: relative;
+  top: -0.125rem;
+  left: -0.125rem;
 }
 
 .search-button:hover {
@@ -57,6 +95,4 @@
   color: white;
   background-color: rgb(73, 165, 202);
   opacity: 0.9;
-  cursor: pointer;
-  border-radius: 7px;
 }/*# sourceMappingURL=Weather.css.map */
