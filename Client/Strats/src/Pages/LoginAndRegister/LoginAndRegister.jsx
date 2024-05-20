@@ -3,7 +3,7 @@ import "./LoginAndRegister.css"
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
-import withMainLayout from "../../layout/withMainLayout";
+import Layout from "../../layout/Layout";
 const SERVER_URL = "https://localhost:7129";
 function Login() {
 	const [loginValues, setLoginValues] = useState({username: '', password: ''});
@@ -66,6 +66,7 @@ function Login() {
 	}
 
 	return(
+		<Layout>
 		<div className="all">
 			<div className="main">  	
 			<input className="login-input" type="checkbox" id="chk" aria-hidden="true"/>
@@ -134,6 +135,7 @@ function Login() {
 				</div>
 			</div>
 		</div>
+		</Layout>
 	)
 };
-export default withMainLayout(Login);
+export default Login;

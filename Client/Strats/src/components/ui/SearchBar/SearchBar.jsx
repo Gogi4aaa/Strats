@@ -8,6 +8,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import Map from "../../Map/Map";
 import { filterMapCategory } from "../../../helpers";
+import Layout from "../../../layout/Layout";
 //variables that not change when any state is changing
 const greenIcon = new L.Icon({
   iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
@@ -346,7 +347,7 @@ export default function SearchBar() {
     }, 1000);
   }, [currentLocation]);
   return (
-    <>
+    <Layout>
       <div className="autocomplete-container mt-4" id="autocomplete-container">
         <div className="input-container input-div">
           <Select
@@ -378,6 +379,6 @@ export default function SearchBar() {
         </div>
             <Map searchData={searchData} viewCount={viewCount} allMarkers={allMarkers} currentLocationInfo={currentLocationInfo} map={map} marker={marker} circle={circle} addPoints={addPointsOnMap} mapHeight={isSelectClicked ? "map-select-open-height" : "map-select-close-height"}/>
       </div>
-    </>
+    </Layout>
   );
 }

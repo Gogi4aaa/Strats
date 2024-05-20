@@ -1,12 +1,14 @@
 import DefaultPage from "../../components/DefaultPage/DefaultPage";
 import Weather from "../../components/Weather/Weather";
-import withMainLayout from "../../layout/withMainLayout";
+import Layout from "../../layout/Layout";
 
 function Home() {
     return (
+        <Layout>
         <DefaultPage id="weather">
             <Weather />
         </DefaultPage>
+        </Layout>
     );
 }
-export default withMainLayout(Home);
+export default Home;

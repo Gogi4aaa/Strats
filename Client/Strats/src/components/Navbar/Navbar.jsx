@@ -1,13 +1,10 @@
-import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import Links from '../ui/Links/Links.jsx';
 import './Navbar.scss';
-export default function Navbar() {
-    const [showMenu, setShowMenu] = useState(false);
+export default function Navbar({showMenu, setShowMenu}) {
     function clickHandler() {
       setShowMenu(!showMenu);
     }
-
     return (
         <>
             <i className={`fa-solid fa-bars nav-icon ${showMenu ? 'nav-icon-menu-hide' : 'nav-icon-menu-show'}`} onClick={clickHandler}></i>

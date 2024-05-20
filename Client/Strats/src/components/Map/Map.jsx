@@ -1,12 +1,17 @@
 import "../Map/Map.css";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { toast } from "react-toastify";
+import { MapContext } from "./MapContext";
 
 export default function Map({searchData, currentLocationInfo, map, marker, circle, addPoints, mapHeight}){
+    
+    const isMenuOpen = useContext(MapContext)
+
     useEffect(() => {
         MapConfiguration();
     }, [searchData]);
 
+    
     function MapConfiguration(){
     var array = [];
     if (searchData.length > 0) {
@@ -51,7 +56,7 @@ export default function Map({searchData, currentLocationInfo, map, marker, circl
     }
     }  
     return(
-        <div className={`map-div ${mapHeight}`}>
+        <div className={`map-div ${mapHeight} ${isMenuOpen ? "map-navbar-open" : "map-navbar-close"}`}>
           <div id="map"></div>
         </div>
     )

@@ -1,8 +1,10 @@
-import withMainLayout from "../../layout/withMainLayout";
+import Layout from "../../layout/Layout";
 
 function About() {
     return (
-        <>About</>
+        <Layout>
+            About
+        </Layout>
     );
 }
-export default withMainLayout(About);
+export default About;
