@@ -1,0 +1,97 @@
+.overlay {
+  width: 100%;
+  height: 100%;
+}
+
+h2 {
+  font-family: "Titillium Web";
+  font-size: 18pt;
+  font-weight: 600;
+  color: #49A5Ca;
+}
+
+.overlay {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  font-family: "Noto Sans";
+  font-size: 18pt;
+  font-weight: 600;
+  background-color: rgba(37, 37, 37, 0.8);
+  color: #49A5Ca;
+}
+
+.nav-icon {
+  position: absolute;
+  padding-left: 1rem;
+  top: 1rem;
+  font-size: 24pt;
+  z-index: 10;
+  transition: all 1.2s;
+}
+.nav-icon-menu-show {
+  opacity: 1;
+}
+.nav-icon-menu-hide {
+  opacity: 0;
+}
+.nav-icon-close-show {
+  opacity: 1;
+}
+.nav-icon-close-hide {
+  opacity: 0;
+}
+.nav-icon:hover {
+  cursor: pointer;
+}
+
+.navbar-left {
+  position: absolute;
+  top: 4rem;
+  padding-top: 2rem;
+  width: 15rem;
+  height: calc(100vh - 4rem);
+  text-align: center;
+  z-index: 10;
+  transition: all 0.8s;
+  background-color: #49A5Ca;
+}
+.navbar-left-show {
+  left: 0;
+}
+.navbar-left-hide {
+  left: -19rem;
+}
+
+.nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-family: "Roboto";
+  font-size: 18pt;
+  font-weight: 500;
+}
+.nav-list-item:hover {
+  background-color: #999999;
+  color: #ffffff;
+}
+.nav-list-link {
+  text-decoration: none;
+  font-weight: 300;
+  color: #252525;
+}
+.nav-list-link-active {
+  text-decoration: none;
+  color: #000000;
+}
+
+@media only screen and (max-width: 450px) {
+  .navbar-left {
+    width: 100%;
+    left: 0;
+  }
+  .navbar-left-hide {
+    left: -100%;
+  }
+}/*# sourceMappingURL=Navbar.css.map */

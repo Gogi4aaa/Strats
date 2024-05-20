@@ -1,0 +1,63 @@
+.overlay {
+  width: 100%;
+  height: 100%;
+}
+
+h2 {
+  font-family: "Titillium Web";
+  font-size: 18pt;
+  font-weight: 600;
+  color: #49A5Ca;
+}
+
+.overlay {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  font-family: "Noto Sans";
+  font-size: 18pt;
+  font-weight: 600;
+  background-color: rgba(37, 37, 37, 0.8);
+  color: #49A5Ca;
+}
+
+.main-header {
+  background-color: #49A5Ca;
+  height: 4rem;
+  padding: 0;
+  margin: 0;
+}
+
+.logo {
+  position: relative;
+  top: 2px;
+  left: 2.5rem;
+  height: 3.8rem;
+  cursor: pointer;
+}
+
+.link {
+  position: relative;
+  top: 1rem;
+  float: right;
+  padding-right: 1rem;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: "Noto Sans";
+  font-size: 18pt;
+  font-weight: 300;
+  color: #ffffff;
+}
+.link-active {
+  position: relative;
+  top: 1rem;
+  float: right;
+  padding-right: 1rem;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: "Noto Sans";
+  font-size: 18pt;
+  font-weight: bold;
+  color: #ffffff;
+}/*# sourceMappingURL=Root.css.map */

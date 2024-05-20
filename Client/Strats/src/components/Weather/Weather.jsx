@@ -211,7 +211,6 @@ export default function Weather() {
                 <Input id='address' className="form-control boxed-left" type='text' placeholder='Enter a location' onKeyDown={keyDownHandler} />
                 <button className="search-button" onClick={clearAndGetLocation}><i className={myIcons.search}></i></button>
             </div>
-            <SearchBar />
             {result !== null &&
                 <div>
                     {result}

@@ -1,12 +1,9 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import Links from '../ui/Links/Links.jsx';
-
 import './Navbar.scss';
-
 export default function Navbar() {
     const [showMenu, setShowMenu] = useState(false);
-
     function clickHandler() {
       setShowMenu(!showMenu);
     }
@@ -33,6 +30,14 @@ export default function Navbar() {
                                 to="/About" alt="About" onClick={clickHandler}
                             >
                                 About
+                            </NavLink>
+                        </li>
+                        <li className="nav-list-item">
+                            <NavLink
+                                className={({isActive}) => isActive ? 'nav-list-link-active' : 'nav-list-link'}
+                                to="/SearchDestination" alt="SearchDestination" onClick={clickHandler}
+                            >
+                                Search Destination
                             </NavLink>
                         </li>
                         <li className="nav-list-item">

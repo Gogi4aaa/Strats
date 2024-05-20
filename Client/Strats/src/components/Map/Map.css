@@ -1,11 +1,25 @@
 #map {
-    height: 350px;
-    z-index: 1;
+    height: 100%;  
   }
   .map-div{
+    position: absolute;
     margin-top: 10rem;
-    position: relative;
     width: 100%;
-    height: 600px;
+    bottom: 0;
+    top: 2rem;
     z-index: 1;
+  }
+  .map-select-open-height{
+    top: 17rem;
+    transition: 1s;
+  }
+  .map-select-close-height{
+    top: 2rem;
+    transition: 1s;
+  }
+  .map-navbar-open{
+    left: 15rem;
+  }
+  .map-navbar-close{
+    left: 0;
   }

@@ -7,6 +7,7 @@ import Select from "react-select";
 import axios from "axios";
 import { toast } from "react-toastify";
 import Map from "../../Map/Map";
+import { filterMapCategory } from "../../../helpers";
 //variables that not change when any state is changing
 const greenIcon = new L.Icon({
   iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
@@ -16,7 +17,7 @@ const greenIcon = new L.Icon({
   popupAnchor: [1, -34],
   shadowSize: [41, 41]
 });
-var oneTimeMapInitalization = 0;
+
 var map, marker, circle, zoomed, myMarker;
 var viewCount = 0;
 var allMarkers = [];
@@ -27,6 +28,7 @@ export default function SearchBar() {
   const [searchData, setSearchData] = useState([]);
   const [category, setCategory] = useState();
   const [currentLocationInfo, setcurrentLocationInfo] = useState(null);
+  const [isSelectClicked, setIsSelectClicked] = useState(false);
   const options = [
     { value: "accommodation", label: "Accommodation" },
     { value: "accommodation.hotel", label: "Hotels" },
@@ -60,10 +62,7 @@ export default function SearchBar() {
     { value: "commercial.clothing.kids", label: "Kids clothing" },
     { value: "commercial.clothing.accessories", label: "Accessories" },
     { value: "commercial.garden", label: "Garden" },
-    {
-      value: "commercial.houseware_and_hardware",
-      label: "Houseware and Hardware",
-    },
+    { value: "commercial.houseware_and_hardware", label: "Houseware and Hardware"},
     { value: "commercial.florist", label: "Florist" },
     { value: "commercial.chemist", label: "Chemist" },
     { value: "commercial.toy_and_game", label: "Toys and Games" },
@@ -95,11 +94,10 @@ export default function SearchBar() {
     { value: "sport.stadium", label: "Stadiums" },
     { value: "public_transport", label: "Public Transport stations" },
   ];
-
+  var oneTimeMapInitalization = 0;
   //Map functionality
-
   function initializeMap() {
-    map = L.map("map").setView([1, -1], 13);
+    map = L.map("map").setView([51.513, -0.09], 13);
     var container = L.DomUtil.get("map");
     if (container != null) {
       container._leaflet_id = null;
@@ -107,7 +105,7 @@ export default function SearchBar() {
     L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
       maxZoom: 19,
     }).addTo(map);
-    navigator.geolocation.watchPosition(success, error);
+    navigator.geolocation.getCurrentPosition(success, error);
 }
   function success(pos) {
   const lat = pos.coords.latitude;
@@ -123,6 +121,7 @@ export default function SearchBar() {
   if (!zoomed) {
       zoomed = map.fitBounds(circle.getBounds());
   }
+  map.setView([lat, lng], 11);
   }
   function error(err) {
   if (err.code == 1) {
@@ -150,9 +149,101 @@ export default function SearchBar() {
         array.map((pos) => {
         if (viewCount <= 1) viewCount++;
         const lat = pos.coords.latitude;
-        const lng = pos.coords.longitude;
+        const lng = pos.coords.longitude; 
+        var accommodationCount = 0;
+        var activityCount = 0;
+        var commercialCount = 0;
+        var cateringCount = 0;
+        var educationCount = 0;
+        var petCount = 0;
+        var stadiumCount = 0;
+        var fitnessCount = 0;
+        pos.data.categories.map(category => {
+          if(category.name.includes("accommodation")){
+            accommodationCount++;
+          }
+          else if(category.name.includes("activity")){
+            activityCount++;
+          }
+          else if(category.name.includes("commercial")){
+            commercialCount++;
+          }
+          else if(category.name.includes("catering")){
+            cateringCount++;
+          }
+          else if(category.name.includes("education")){
+            educationCount++;
+          }
+          else if(category.name.includes("pet")){
+            petCount++;
+          }
+          else if(category.name.includes("stadium")){
+            stadiumCount++;
+          }
+          else if(category.name.includes("fitness")){
+            fitnessCount++;
+          }
+          else{
+            pos.data.categories = pos.data.categories.filter(item => item.name != category.name)
+          }
+        })
+        
+          pos.data.categories.map(key => {
+            if(accommodationCount > 1){
+              if(key.name.includes("accommodation")) {
+                pos.data.categories = pos.data.categories.filter(item => item.name != key.name)
+                accommodationCount--;
+              }
+            }
+            else if(activityCount > 1){
+              if(key.name.includes("activity")) {
+                pos.data.categories = pos.data.categories.filter(item => item.name != key.name)
+                activityCount--;
+              }
+            }
+            else if(commercialCount > 1){
+              if(key.name.includes("commercial")) {
+                pos.data.categories = pos.data.categories.filter(item => item.name != key.name)
+                commercialCount--;
+              }
+            }
+            else if(cateringCount > 1){
+              if(key.name.includes("catering")) {
+                pos.data.categories = pos.data.categories.filter(item => item.name != key.name)
+                cateringCount--;
+              }
+            }
+            else if(educationCount > 1){
+              if(key.name.includes("education")) {
+                pos.data.categories = pos.data.categories.filter(item => item.name != key.name)
+                educationCount--;
+              }
+            }
+            else if(petCount > 1){
+              if(key.name.includes("pet")) {
+                pos.data.categories = pos.data.categories.filter(item => item.name != key.name)
+                petCount--;
+              }
+            }
+            else if(stadiumCount > 1){
+              if(key.name.includes("stadium")) {
+                pos.data.categories = pos.data.categories.filter(item => item.name != key.name)
+                stadiumCount--;
+              }
+            }
+            else if(fitnessCount > 1){
+              if(key.name.includes("fitness")) {
+                pos.data.categories = pos.data.categories.filter(item => item.name != key.name)
+                fitnessCount--;
+              }
+            }
+            else{
+              pos.data.categories = pos.data.categories.filter(item => item.name != undefined)
+            }
+        });
         myMarker = L.marker([lat, lng], {icon: greenIcon}).addTo(map);
-        myMarker.bindPopup(`<b>${pos.data.street}</b>`);//here
+        var textForPopup = `<b>${pos.data.street}</b><br><h5>${pos.data.postcode} ${pos.data.city}, ${pos.data.country}</h5>${pos.data.categories.map(x => `<div style="display:flex;justify-content:center;align-items:center;">${filterMapCategory(x.name)}</div>`)}`;
+        myMarker.bindPopup(textForPopup);//here
         allMarkers.push(myMarker);
         if (viewCount == 1) {
             circle = L.circle(
@@ -248,7 +339,6 @@ export default function SearchBar() {
         initializeMap();
         oneTimeMapInitalization++;
     }
-    
 }, []);
   useEffect(() => {
     setTimeout(() => {
@@ -257,10 +347,12 @@ export default function SearchBar() {
   }, [currentLocation]);
   return (
     <>
-      <div className="autocomplete-container" id="autocomplete-container">
+      <div className="autocomplete-container mt-4" id="autocomplete-container">
         <div className="input-container input-div">
           <Select
-            className="select"
+            onMenuOpen={() => {setIsSelectClicked(true)}}
+            onMenuClose={() => {setIsSelectClicked(false)}}
+            className="select select-options"
             onChange={handleSelectChange}
             options={options}
           />
@@ -284,7 +376,7 @@ export default function SearchBar() {
             })}
           </div>
         </div>
-            <Map searchData={searchData} viewCount={viewCount} allMarkers={allMarkers} currentLocationInfo={currentLocationInfo} map={map} marker={marker} circle={circle} addPoints={addPointsOnMap}/>
+            <Map searchData={searchData} viewCount={viewCount} allMarkers={allMarkers} currentLocationInfo={currentLocationInfo} map={map} marker={marker} circle={circle} addPoints={addPointsOnMap} mapHeight={isSelectClicked ? "map-select-open-height" : "map-select-close-height"}/>
       </div>
     </>
   );

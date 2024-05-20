@@ -2,7 +2,7 @@ import "../Map/Map.css";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
 
-export default function Map({searchData, currentLocationInfo, map, marker, circle, addPoints}){
+export default function Map({searchData, currentLocationInfo, map, marker, circle, addPoints, mapHeight}){
     useEffect(() => {
         MapConfiguration();
     }, [searchData]);
@@ -19,13 +19,16 @@ export default function Map({searchData, currentLocationInfo, map, marker, circl
             data:{
                 street: destination.properties.street,
                 postcode: destination.properties.postcode,
+                country: destination.properties.country,
+                city: destination.properties.city,
                 categories: destination.properties.categories.map(x => {
-                    return {category: x}
+                    return {name: x}
                 }),
                 
             }
         };
         });
+        console.log(array);
         addPoints(array);
     } else {
         if (marker) {
@@ -48,7 +51,7 @@ export default function Map({searchData, currentLocationInfo, map, marker, circl
     }
     }  
     return(
-        <div className="map-div">
+        <div className={`map-div ${mapHeight}`}>
           <div id="map"></div>
         </div>
     )
