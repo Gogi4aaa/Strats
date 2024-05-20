@@ -3,8 +3,9 @@ import "./LoginAndRegister.css"
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
+import withMainLayout from "../../layout/withMainLayout";
 const SERVER_URL = "https://localhost:7129";
-export default function Login() {
+function Login() {
 	const [loginValues, setLoginValues] = useState({username: '', password: ''});
 	const [registerValues, setRegisterValues] = useState({firstName: '', lastName: '', username: '', email: '', password: ''})
 	
@@ -135,4 +136,4 @@ export default function Login() {
 		</div>
 	)
 };
-	
+export default withMainLayout(Login);
