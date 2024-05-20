@@ -17,6 +17,14 @@
     top: 2rem;
     transition: 1s;
   }
+  .map-weather-open-height{
+    top: 35rem;
+    transition: 1s;
+  }
+  .map-weather-close-height{
+    top: 2rem;
+    transition: 1s;
+  }
   .map-navbar-open{
     left: 15rem;
   }

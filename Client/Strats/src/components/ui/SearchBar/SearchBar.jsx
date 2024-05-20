@@ -106,7 +106,7 @@ export default function SearchBar() {
       maxZoom: 19,
     }).addTo(map);
     navigator.geolocation.getCurrentPosition(success, error);
-}
+  }
   function success(pos) {
   const lat = pos.coords.latitude;
   const lng = pos.coords.longitude;
@@ -254,7 +254,7 @@ export default function SearchBar() {
         }
         });
     }
-    }
+  }
   // Map functionality END
 
   function handleSearchButtonClick() {
