@@ -16,11 +16,14 @@ const VerticalCarousel = ({ children, setThisTop }) => {
     const UPPERBOUND = 7;
     
     const handleClick = (direction) => {
-        if (direction === 'prev') {
+        if (direction === 'prev' && activeIndex > 0) {
+            setActiveIndex(activeIndex - 1);
             setTop(top + MEASURE);
-        } else {
+        } else if (direction === 'next' && activeIndex < UPPERBOUND) {
+            setActiveIndex(activeIndex + 1);
             setTop(top - MEASURE);
         }
+        console.log('top: ' + top + 'activeIndex: ' + activeIndex);
     }
 
     return (
