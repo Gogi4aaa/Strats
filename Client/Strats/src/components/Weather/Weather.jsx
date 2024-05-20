@@ -1,6 +1,6 @@
 // weather api documentation at https://open-meteo.com/en/docs
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import Input from "../ui/Input/Input.jsx";
@@ -20,6 +20,7 @@ import {
 } from "../../helpers.js";
 import "./Weather.scss";
 import Slideshow from "../Carousel/Carousel.jsx";
+import { SideBarContext } from "../../Contexts/MapContext.jsx";
 //constants
 const MIN_ADDRESS_LENGTH = 3;
 const DEBOUNCE_DELAY = -1000;
@@ -184,6 +185,9 @@ export default function Weather() {
       });
   }
 
+  //contextSideBar Value
+  var isShowMenu = useContext(SideBarContext)
+
   const days = [];
   const forecastData = [];
   const daysData = [];
@@ -275,9 +279,8 @@ export default function Weather() {
         resdata.current_weather.weathercode,
         getIsDaytime(convertTimeStampToUnixTime(resdata.current_weather.time))
       );
-
       setResult(
-        <div className="current-weather">
+        <>
           <div>
             <div>
               <div>
@@ -318,7 +321,7 @@ export default function Weather() {
             {getWindDirection(resdata.current_weather.winddirection)}
           </div>
           <Slideshow className="slideshow" items={daysData} />
-        </div>
+          </>
       );
     }
   }, [resdata]);
@@ -626,7 +629,9 @@ export default function Weather() {
         </div>
         <Map searchData={searchData} viewCount={viewCount} allMarkers={allMarkers} currentLocationInfo={currentLocationInfo} map={map} marker={marker} circle={circle} addPoints={addPointsOnMap} mapHeight={isSelectClicked ? "map-select-open-height" : "map-select-close-height" && result != null ? "map-weather-open-height" : "map-weather-close-height"}/>
       </div>
-        {result !== null && <div>{result}</div>}
+      <div className={`current-weather ${isShowMenu ? "weather-navbar-open" : "weather-navbar-close"}`}>
+          {result !== null && <div>{result}</div>}
+      </div>
     </>
   );
 }

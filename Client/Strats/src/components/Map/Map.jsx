@@ -1,11 +1,11 @@
 import "../Map/Map.css";
 import { useContext, useEffect } from "react";
 import { toast } from "react-toastify";
-import { MapContext } from "./MapContext";
+import { SideBarContext } from "../../Contexts/MapContext";
 
 export default function Map({searchData, currentLocationInfo, map, marker, circle, addPoints, mapHeight}){
     
-    const isMenuOpen = useContext(MapContext)
+    const isMenuOpen = useContext(SideBarContext)
 
     useEffect(() => {
         MapConfiguration();

@@ -85,3 +85,11 @@
     opacity: 0.9;
     // border-radius: 7px;
 }
+.weather-navbar-open{
+    padding-left: 15rem;
+    transition: 0.8s;
+}
+.weather-navbar-close{
+    padding-left: 0rem;
+    transition: 0.8s;
+}
