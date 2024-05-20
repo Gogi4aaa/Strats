@@ -5,7 +5,7 @@
     margin: 0 .15rem;
     padding: 0 0.5rem;
     width: 14rem;
-    height: 9rem;
+    height: 10.5rem;
     overflow-y: hidden;
 
     @include borderTopRadius;
@@ -23,7 +23,7 @@
 
     &-hour {
         // border-bottom: solid 1px map-get($color, lighter);
-        height: 9rem;
+        height: 10.5rem;
 
         transition: all 1.2s;
 

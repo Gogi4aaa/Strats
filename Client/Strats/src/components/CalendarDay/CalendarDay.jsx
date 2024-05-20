@@ -1,4 +1,4 @@
-import { useState, forwardRef, useImperativeHandle, useRef, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 import VerticalCarousel from '../Carousel/VerticalCarousel';
 import { convertToCelsius, convertTimeStampToUnixTime, getWeatherInterpretation, getIsDaytime, getWindDirection, getTempColor } from '../../helpers';
@@ -6,8 +6,6 @@ import { convertToCelsius, convertTimeStampToUnixTime, getWeatherInterpretation,
 import './CalendarDay.scss';
 
 export default function CalendarDay({ date, data }) {
-    const calenderDay = useRef();
-
     const imagePath = 'weather-icons/animated';
 
     let monthDay = `${new Date().getMonth() + 1 + '/' + new Date().getDate()}`
@@ -21,7 +19,7 @@ export default function CalendarDay({ date, data }) {
         console.log(top);
     }, [top]);
     
-    const measure = 9;
+    const measure = 10.5;
     const upperBound = 7;
     const [activeIndex, setActiveIndex] = useState(0);
 
@@ -33,7 +31,7 @@ export default function CalendarDay({ date, data }) {
             setActiveIndex(activeIndex + 1);
             setTop(top - measure);
         }
-        // console.log('top: ' + top + 'activeIndex: ' + activeIndex);
+        console.log('top: ' + top + 'activeIndex: ' + activeIndex);
     }
 
     return (
@@ -53,7 +51,6 @@ export default function CalendarDay({ date, data }) {
                             <img className='calendar-hour-data-image' src={`${imagePath}/${interpretation.icon}.svg`} />
                         </span>
                         <span className='calendar-hour-data center'>{interpretation.text}</span>
-                        {/* <br /> */}
                     </div>
                 )
             })}
